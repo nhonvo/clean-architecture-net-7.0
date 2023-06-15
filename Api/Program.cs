@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Api.ApplicationLogic.Repositories;
 using Api.ApplicationLogic.Services;
 using Api.Core;
@@ -8,6 +7,7 @@ using Api.Infrastructure.IService;
 using Api.Infrastructure.Mapper;
 using Api.Presentation.Middlewares;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,3 @@
-using Api.ApplicationLogic.Repositories;
 using Api.Infrastructure.Interface;
 using Api.Infrastructure.IService;
 

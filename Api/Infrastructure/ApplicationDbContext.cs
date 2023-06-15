@@ -11,7 +11,7 @@ namespace Api.Infrastructure
         {
 
         }
-        
+
         public DbSet<Book> Books { get; set; }
     }
 }

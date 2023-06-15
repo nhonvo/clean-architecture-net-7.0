@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Api.Infrastructure.Interface;
 
 namespace Api.Infrastructure

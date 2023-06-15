@@ -1,11 +1,10 @@
-using System.Text.Json;
 using Api.Core;
 using Api.Core.Entities;
 using Api.Core.Models.AppResult;
 using Api.Infrastructure;
-using Api.Infrastructure.Interface;
 using Api.Infrastructure.IService;
 using AutoMapper;
+using System.Text.Json;
 
 namespace Api.ApplicationLogic.Services
 {

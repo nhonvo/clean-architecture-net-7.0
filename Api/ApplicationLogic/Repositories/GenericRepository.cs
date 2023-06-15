@@ -1,8 +1,8 @@
-using System.Linq.Expressions;
 using Api.Core;
 using Api.Infrastructure;
 using Api.Infrastructure.Interface;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Api.ApplicationLogic.Repositories
 {
@@ -36,7 +36,7 @@ namespace Api.ApplicationLogic.Repositories
             return await _dbSet.CountAsync(filter);
         }
 
-        public async Task<int> CountAsync() 
+        public async Task<int> CountAsync()
             => await _dbSet.CountAsync();
 
         public async Task<T> GetByIdAsync(object id)
@@ -92,16 +92,16 @@ namespace Api.ApplicationLogic.Repositories
         #endregion
         #region Update & delete
 
-        public void Update(T entity) 
+        public void Update(T entity)
             => _dbSet.Update(entity);
 
-        public void UpdateRange(IEnumerable<T> entities) 
+        public void UpdateRange(IEnumerable<T> entities)
             => _dbSet.UpdateRange(entities);
 
-        public void Delete(T entity) 
+        public void Delete(T entity)
             => _dbSet.Remove(entity);
 
-        public void DeleteRange(IEnumerable<T> entities) 
+        public void DeleteRange(IEnumerable<T> entities)
             => _dbSet.RemoveRange(entities);
 
         public async Task Delete(object id)

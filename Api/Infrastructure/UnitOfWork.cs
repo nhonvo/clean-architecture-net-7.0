@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Api.ApplicationLogic.Repositories;
 using Api.Infrastructure.Interface;
 using Microsoft.EntityFrameworkCore.Storage;

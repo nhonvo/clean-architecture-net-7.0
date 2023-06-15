@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 using Api.Core;
+using System.Linq.Expressions;
 
 namespace Api.Infrastructure.Interface
 {
