@@ -9,6 +9,8 @@ Sprint (1 week)
 - Sprint 2:
   - use docker instead
   - enhance code base
+    - add appsetting file 
+    - add identity user
 - Sprint 3:
   - add test project.
   - service test and unit tests
@@ -59,8 +61,8 @@ Sprint (1 week)
 - newrelics
 - Splunk
 - Nginx
-- Hangfire
-- NetMQ (optional)
+- Hangfire          == separate demo
+- NetMQ (optional)  == separate demo
 
 
 ## Dependencies

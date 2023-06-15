@@ -22,16 +22,19 @@ builder.Services.AddSingleton(configuration);
 builder.Services.AddDbContext<ApplicationDbContext>(o =>
     o.UseNpgsql(configuration.ConnectionStrings.DatabaseConnection)
 );
+// register services
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 
-// builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserReadService, UserReadService>();
+builder.Services.AddScoped<IUserWriteService, UserWriteService>();
 builder.Services.AddScoped<IBookReadService, BookReadService>();
 builder.Services.AddScoped<IBookWriteService, BookWriteService>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
+// Middleware
 builder.Services.AddSingleton<GlobalExceptionMiddleware>();
 builder.Services.AddSingleton<PerformanceMiddleware>();
 builder.Services.AddSingleton<Stopwatch>();
