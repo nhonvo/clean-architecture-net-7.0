@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{0569B24A-50B1-42DF-8141-0AAEDB58D61B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations", "Migrations\Migrations.csproj", "{F19DD758-EB27-4AA8-AFE2-5496F6D0E06A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{84477A73-8E55-41CE-94CF-DE199153B0F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0569B24A-50B1-42DF-8141-0AAEDB58D61B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0569B24A-50B1-42DF-8141-0AAEDB58D61B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0569B24A-50B1-42DF-8141-0AAEDB58D61B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0569B24A-50B1-42DF-8141-0AAEDB58D61B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19DD758-EB27-4AA8-AFE2-5496F6D0E06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19DD758-EB27-4AA8-AFE2-5496F6D0E06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19DD758-EB27-4AA8-AFE2-5496F6D0E06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19DD758-EB27-4AA8-AFE2-5496F6D0E06A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84477A73-8E55-41CE-94CF-DE199153B0F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84477A73-8E55-41CE-94CF-DE199153B0F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84477A73-8E55-41CE-94CF-DE199153B0F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84477A73-8E55-41CE-94CF-DE199153B0F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
