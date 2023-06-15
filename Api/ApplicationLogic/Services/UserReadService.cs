@@ -1,13 +1,14 @@
 using Api.ApplicationLogic.Repositories;
+using Api.Infrastructure.Interface;
 using Api.Infrastructure.IService;
 
 namespace Api.ApplicationLogic.Services
 {
     public class UserReadService : IUserReadService
     {
-        private readonly UserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UserReadService(UserRepository userRepository)
+        public UserReadService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }

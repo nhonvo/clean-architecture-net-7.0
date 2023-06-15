@@ -11,6 +11,8 @@ Sprint (1 week)
   - enhance code base
     - add appsetting file 
     - add identity user
+    - jwt token
+    - policy base.
 - Sprint 3:
   - add test project.
   - service test and unit tests
@@ -58,6 +60,7 @@ Sprint (1 week)
 - postgresql
 - docker
 - serilog
+- redis
 - newrelics
 - Splunk
 - Nginx
@@ -80,3 +83,4 @@ Sprint (1 week)
 - Serilog.AspNetCore  
 - Swashbuckle.AspNetCore  
 - Npgsql.EntityFrameworkCore.PostgreSQL
+- Microsoft.AspNetCore.Identity.EntityFrameworkCore

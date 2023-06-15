@@ -7,11 +7,7 @@ using Api.Infrastructure.Interface;
 using Api.Infrastructure.IService;
 using Api.Infrastructure.Mapper;
 using Api.Presentation.Middlewares;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +23,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 builder.Services.AddScoped<IUserReadService, UserReadService>();
-builder.Services.AddScoped<IUserWriteService, UserWriteService>();
+// builder.Services.AddScoped<IUserWriteService, UserWriteService>();
 builder.Services.AddScoped<IBookReadService, BookReadService>();
 builder.Services.AddScoped<IBookWriteService, BookWriteService>();
 
