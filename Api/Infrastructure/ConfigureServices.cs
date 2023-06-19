@@ -15,6 +15,8 @@ namespace Api.Infrastructure
             services.AddDbContext<ApplicationDbContext>(o =>
                 o.UseNpgsql(databaseConnection)
             );
+            System.Console.WriteLine("1Herere!!!!" + databaseConnection);
+
             // register services
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBookRepository, BookRepository>();

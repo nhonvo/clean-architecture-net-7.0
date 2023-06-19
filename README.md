@@ -8,7 +8,9 @@ Sprint (1 week)
   - build skeleton project: connect with postgresql, rest api, etc
   - seed data
 - Sprint 2:
-  - use docker instead
+  - add docker config : fail
+  - use fluent configuration
+  -  
   <!-- - Separate file configuration -->
   - enhance code base
 - Sprint 3:
