@@ -2,6 +2,10 @@
 
 - Book management fake
 
+- Note: migration method use for docker and container when build we can not use dotnet ef migrations add ..
+- so we should use migration method
+- second  use env variable ASPNETCORE_ENVIRONMENT = "development"
+
 Sprint (1 week)
 
 - Sprint 1:
@@ -15,6 +19,7 @@ Sprint (1 week)
   - enhance code base
 - Sprint 3:
   - add test project.
+  - optimize move and copy data seed type json correct destination
   - service test and unit tests
   - add identity user
     - jwt token

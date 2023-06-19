@@ -10,7 +10,7 @@ namespace Api.Infrastructure
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> context) : base(context)
         {
-
+            Database.Migrate();
         }
 
         public DbSet<Book> Books { get; set; }
