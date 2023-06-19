@@ -6,16 +6,17 @@ Sprint (1 week)
 
 - Sprint 1:
   - build skeleton project: connect with postgresql, rest api, etc
+  - seed data
 - Sprint 2:
   - use docker instead
+  <!-- - Separate file configuration -->
   - enhance code base
-    - add appsetting file 
-    - add identity user
-    - jwt token
-    - policy base.
 - Sprint 3:
   - add test project.
   - service test and unit tests
+  - add identity user
+    - jwt token
+    - policy base.
 - Sprint 4:
   - review code
   - release

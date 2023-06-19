@@ -35,7 +35,7 @@ namespace Api.ApplicationLogic.Services
         {
             if (!await _unitOfWork.BookRepository.AnyAsync())
             {
-                string json = File.ReadAllText(@".\Json\book.json");
+                string json = File.ReadAllText(@"..\.\Json\book.json");
                 List<Book> books = JsonSerializer.Deserialize<List<Book>>(json)!;
                 await _unitOfWork.ExecuteTransactionAsync(() =>
                 {

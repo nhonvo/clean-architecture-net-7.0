@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  api:
+    image: api
+    build:
+      context: .
+      dockerfile: Api/Dockerfile
+    ports:
+      - 5252:5252
+    environment:
+      - ConnectionStrings__Default=Server=localhost;Port=5432;Database=bookdb;User Id=postgres;Password=123;
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=bookdb
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
