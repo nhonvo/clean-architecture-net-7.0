@@ -33,7 +33,7 @@ namespace Api.Presentation.Filters
         private void HandleException(ExceptionContext context)
         {
             Type type = context.Exception.GetType();
-            if (_exceptionHandlers.TryGetValue(type, out Action<ExceptionContext> value))
+            if (_exceptionHandlers.TryGetValue(type, out Action<ExceptionContext>? value))
             {
                 value.Invoke(context);
                 return;

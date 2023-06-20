@@ -22,13 +22,6 @@ namespace Api.ApplicationLogic.Services
         public async Task<Book> Get(int id)
             => await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id)
                 ?? throw new ArgumentNullException("Book not found");
-        // public async Task<Book> Get(int id)
-        // {
-        //     var result = await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id);
-        //     if (result == null)
-        //         throw new ArgumentNullException("Book not found");
-        //     return result;
-        // }
 
         public async Task Seed()
         {

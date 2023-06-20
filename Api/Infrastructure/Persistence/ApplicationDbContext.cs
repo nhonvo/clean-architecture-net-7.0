@@ -10,7 +10,6 @@ namespace Api.Infrastructure.Persistence
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> context) : base(context)
         {
-            Database.Migrate();
         }
 
         public DbSet<Book> Books { get; set; }

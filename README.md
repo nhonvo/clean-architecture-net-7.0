@@ -1,5 +1,10 @@
 # Robusta template
 
+- [Robusta template](#robusta-template)
+  - [Architecture](#architecture)
+  - [Technologies](#technologies)
+  - [Dependencies](#dependencies)
+
 Project start day: Wednesday, 14/6/2023
 
 - Week 1: 14 - 16/6/2023 - 3 days - 5 points
@@ -56,37 +61,41 @@ Project start day: Wednesday, 14/6/2023
 
 ## Architecture
 
-- application
-  |__api
-  |   |__ ApplicationLogic
-  |   |   |__Repositories
-  |   |   |__ Services
-  |   |       |__WriteService
-  |   |       |__ReadService
-  |   |__Core
-  |   |   |__ Configuration
-  |   |   |__Constants
-  |   |   |__ Entities
-  |   |   |__Enum
-  |   |   |__ Extensions
-  |   |   |__Interfaces
-  |   |   |__ Messaging
-  |   |   |__Retry
-  |   |   |__ Utilities
-  |   |__Infrastructure
-  |   |   |__ Postgres
-  |   |   |__SNS
-  |   |__ Presentation
-  |   |   |__Authentication
-  |   |   |__ Constants
-  |   |   |__Controllers
-  |   |   |__ Filters
-  |   |   |__Mappers
-  |   |   |__ Validation
-  |   |__appsettings.json
-  |   |__ Program.cs
-  |__Migrations
-  |__ Models
+- [Image architect full hd](.././Application/MicrosoftTeams-image.png)
+
+```markdown
+application
+|__api
+|   |__ ApplicationLogic
+|   |   |__Repositories
+|   |   |__ Services
+|   |       |__WriteService
+|   |       |__ReadService
+|   |__Core
+|   |   |__ Configuration
+|   |   |__Constants
+|   |   |__ Entities
+|   |   |__Enum
+|   |   |__ Extensions
+|   |   |__Interfaces
+|   |   |__ Messaging
+|   |   |__Retry
+|   |   |__ Utilities
+|   |__Infrastructure
+|   |   |__ Postgres
+|   |   |__SNS
+|   |__ Presentation
+|   |   |__Authentication
+|   |   |__ Constants
+|   |   |__Controllers
+|   |   |__ Filters
+|   |   |__Mappers
+|   |   |__ Validation
+|   |__appsettings.json
+|   |__ Program.cs
+|__Migrations
+|__ Models
+```
 
 ## Technologies
 
@@ -116,3 +125,7 @@ Project start day: Wednesday, 14/6/2023
 - Swashbuckle.AspNetCore  
 - Npgsql.EntityFrameworkCore.PostgreSQL
 - Microsoft.AspNetCore.Identity.EntityFrameworkCore
+- Nlog
+- Nlog.Extensions.Logging
+- Nlog.Targets.Splunk
+- Microsoft.Extensions.Logging
