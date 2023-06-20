@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration.Get<AppConfiguration>()
                     ?? throw new ArgumentNullException("AppConfiguration cannot be null");
 
-var databaseConnection = configuration.ConnectionStrings.DatabaseConnectionDocker;
+var databaseConnection = configuration.ConnectionStrings.DatabaseConnection;
 
 builder.Services.AddSingleton(configuration);
 var app = await builder.ConfigureServices(databaseConnection)

@@ -1,83 +1,104 @@
-# Robusta fake
+# Robusta template
 
-- Book management fake
+Project start day: Wednesday, 14/6/2023
 
-- Note: migration method use for docker and container when build we can not use dotnet ef migrations add ..
-- so we should use migration method
-- second  use env variable ASPNETCORE_ENVIRONMENT = "development"
+- Week 1: 14 - 16/6/2023 - 3 days - 5 points
 
-Sprint (1 week)
+| id  | task                                                     | days | points | Process |
+| --- | -------------------------------------------------------- | ---- | ------ | ------- |
+| 1   | Clear requirements and all technologies needed.          | 1    | 1      | 100%    |
+| 2   | build skeleton project: connect postgresql, rest api etc | 1    | 2      | 100%    |
+| 3   | Enhance codebase: separate services, refactor code.      | 0.5  | 1      | 100%    |
+| 4   | research and set up docker                               | 0.5  | 1      | 100 %   |
 
-- Sprint 1:
-  - build skeleton project: connect with postgresql, rest api, etc
-  - seed data
-- Sprint 2:
-  <!-- - add docker config : done -->
-  <!-- - use fluent configuration -->
-  <!-- - Separate file configuration -->
-  - implement slunk log
-    - Splunk
-    - Implement Splunk to C# project
-    - Free lic for dev here: https://dev.splunk.com/enterprise/dev_license
-  - enhance code base
-- Sprint 3:
-  - add test project.
-  - optimize move and copy data seed type json correct destination
-  - service test and unit tests
-  - add identity user
-    - jwt token
-    - policy base.
-- Sprint 4:
-  - review code
-  - release
+- Details:
+  1. Write documentation [Architect](#architecture), [Technologies](#technologies),
+   [Dependencies](#dependencies)
+  2. set up postgreSQL, rest api, seed data etc
+  3. Enhance codebase:
+     1. separate to read and write services.
+     2. refactor code(remove unused using, move file to correct location)
+  4. research docker and build sample project.
+
+- Week 2: 19 - 23/6/2023
+| id  | task                                                     | days | points | Process |
+| --- | -------------------------------------------------------- | ---- | ------ | ------- |
+| 1   | Enhance codebase Program.cs, set up docker               | 1    | 2      | 100%    |
+| 2   | Enhance code (fluentAPI, migration), research Splunk log | 1    | 2      | 100%    |
+
+- Details:
+  1. Enhance codebase Program.cs, set up docker
+     1. Enhance codebase: Program.cs
+        1. separate configuration settings in Program.cs
+     2. Set up docker: add docker file and docker compose. Connect to postgresql.
+        1. Issue: when connecting to postgresql - Solutions: add environment variable, migrate same time docker compose.
+  2. Enhance code (fluentAPI, migration), research Splunk log
+     1. Enhance code (fluentAPI, migration)
+        1. add Persistence for fluentAPI configuration
+        2. and ApplicationDbContextInitialize migration when application run
+     2. research Splunk log
+        1. implement slunk log
+        2. Implement Splunk to C# project
+        3. Free lic for dev here: <https://dev.splunk.com/enterprise/dev_license>
+  3.
+
+- On Ready to go
+  - Week 3:
+    - add test project.
+    - optimize move and copy data seed type json correct destination
+    - service test and unit tests
+    - add identity user
+      - jwt token
+      - policy base.
+  - Week 4:
+    - review code
+    - release
 
 ## Architecture
 
 - application
-  - api
-    - ApplicationLogic
-      - Repositories
-      - Services
-        - WriteService
-        - ReadService
-    - Core
-      - Configuration
-      - Constants ??
-      - Entities
-      - Enum
-      - Extensions
-      - Interfaces
-      - Messaging ??
-      - Retry ??
-      - Utilities - string helpers
-    - Infrastructure
-      - Postgres
-      - SNS(message Snspublisher.cs) ??
-    - Presentation
-      - Authentication
-      - Constants ??
-      - Controllers
-      - Filters
-      - Mappers
-      - Validation
-    - appsettings.json
-    - Program.cs
-  - Migrations
-  - Models
+  |__api
+  |   |__ ApplicationLogic
+  |   |   |__Repositories
+  |   |   |__ Services
+  |   |       |__WriteService
+  |   |       |__ReadService
+  |   |__Core
+  |   |   |__ Configuration
+  |   |   |__Constants
+  |   |   |__ Entities
+  |   |   |__Enum
+  |   |   |__ Extensions
+  |   |   |__Interfaces
+  |   |   |__ Messaging
+  |   |   |__Retry
+  |   |   |__ Utilities
+  |   |__Infrastructure
+  |   |   |__ Postgres
+  |   |   |__SNS
+  |   |__ Presentation
+  |   |   |__Authentication
+  |   |   |__ Constants
+  |   |   |__Controllers
+  |   |   |__ Filters
+  |   |   |__Mappers
+  |   |   |__ Validation
+  |   |__appsettings.json
+  |   |__ Program.cs
+  |__Migrations
+  |__ Models
 
 ## Technologies
 
 - net v7.0
 - postgresql
 - docker
-- serilog
+- Nlog/Splunk
 - redis
 - newrelics
-- Splunk
 - Nginx
-- Hangfire          == separate demo
-- NetMQ (optional)  == separate demo
-
+- Hangfire                  == separate demo
+- NetMQ/SignalR (optional)  == separate demo
 
 ## Dependencies
 
