@@ -1,4 +1,6 @@
+using System.Reflection;
 using Api.Core.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Infrastructure
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext :  DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> context) : base(context)
         {
@@ -15,6 +17,9 @@ namespace Api.Infrastructure
 
         public DbSet<Book> Books { get; set; }
         public DbSet<User> Users { get; set; }
-
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
     }
 }

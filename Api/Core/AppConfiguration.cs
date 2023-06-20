@@ -11,6 +11,7 @@ namespace Api.Core
     public class ConnectionStrings
     {
         public string DatabaseConnection { get; set; }
+        public string DatabaseConnectionDocker { get; set; }
     }
 
     public class Jwt

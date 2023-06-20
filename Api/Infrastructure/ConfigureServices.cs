@@ -21,6 +21,7 @@ namespace Api.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ApplicationDbContextInitializer>();
 
             return services;
 

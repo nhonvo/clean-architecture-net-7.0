@@ -3,10 +3,12 @@ using Api.Presentation.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var configuration = builder.Configuration.Get<AppConfiguration>();
-var databaseConnection = configuration.ConnectionStrings.DatabaseConnection;
-// System.Console.WriteLine("Herere!!!!" + databaseConnection);
+var configuration = builder.Configuration.Get<AppConfiguration>()
+                    ?? throw new ArgumentNullException("AppConfiguration cannot be null");
+
+var databaseConnection = configuration.ConnectionStrings.DatabaseConnectionDocker;
+
 builder.Services.AddSingleton(configuration);
-var app = builder.ConfigureServices(databaseConnection)
-    .ConfigurePipeline();
+var app = await builder.ConfigureServices(databaseConnection)
+                        .ConfigurePipelineAsync();
 app.Run();

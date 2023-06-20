@@ -15,7 +15,7 @@ namespace Api.Presentation.Extensions
             return builder.Build();
         }
 
-        public static WebApplication ConfigurePipeline(this WebApplication app)
+        public static async Task<WebApplication> ConfigurePipelineAsync(this WebApplication app)
         {
 
             // Configure the HTTP request pipeline.
@@ -23,6 +23,11 @@ namespace Api.Presentation.Extensions
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+
+                using var scope = app.Services.CreateScope();
+                var initialize = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
+                await initialize.InitializeAsync();
+
             }
 
             app.UseHttpsRedirection();

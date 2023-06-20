@@ -1,8 +1,7 @@
-using Microsoft.AspNetCore.Identity;
-
 namespace Api.Core.Entities
 {
-    public class User : IdentityUser
+    public class User
     {
+        public int Id { get; set; }
     }
 }
