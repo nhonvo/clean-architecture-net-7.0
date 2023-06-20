@@ -1,4 +1,4 @@
-using Api.Core;
+using Api.Core.Commons;
 using System.Linq.Expressions;
 
 namespace Api.Infrastructure.Interface

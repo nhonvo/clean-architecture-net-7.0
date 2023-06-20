@@ -1,5 +1,6 @@
 using Api.ApplicationLogic;
 using Api.Infrastructure;
+using Api.Infrastructure.Persistence;
 
 namespace Api.Presentation.Extensions
 {

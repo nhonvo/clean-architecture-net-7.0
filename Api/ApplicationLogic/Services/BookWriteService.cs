@@ -1,5 +1,4 @@
 using Api.Core.Entities;
-using Api.Core.Models.AppResult;
 using Api.Infrastructure;
 using Api.Infrastructure.IService;
 using AutoMapper;
@@ -16,16 +15,16 @@ namespace Api.ApplicationLogic.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<ApiResult<int>> Add(BookDTO request)
+        public async Task<int> Add(BookDTO request)
         {
             var book = _mapper.Map<Book>(request);
             await _unitOfWork.ExecuteTransactionAsync(async () =>
             {
                 await _unitOfWork.BookRepository.AddAsync(book);
             });
-            return new ApiSuccessResult<int>(book.Id);
+            return book.Id;
         }
-        public async Task<ApiResult<BookDTO>> Update(Book request)
+        public async Task<BookDTO> Update(Book request)
         {
             var book = await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == request.Id);
             book = _mapper.Map<Book>(request);
@@ -34,16 +33,16 @@ namespace Api.ApplicationLogic.Services
                 _unitOfWork.BookRepository.Update(book);
             });
             var result = _mapper.Map<BookDTO>(book);
-            return new ApiSuccessResult<BookDTO>(result);
+            return result;
         }
-        public async Task<ApiResult<int>> Delete(int id)
+        public async Task<int> Delete(int id)
         {
             var book = await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id);
             await _unitOfWork.ExecuteTransactionAsync(() =>
             {
                 _unitOfWork.BookRepository.Delete(book);
             });
-            return new ApiSuccessResult<int>(book.Id);
+            return book.Id;
         }
     }
 }

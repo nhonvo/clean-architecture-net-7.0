@@ -1,6 +1,8 @@
 using Api.ApplicationLogic.Repositories;
 using Api.Infrastructure.Interface;
+using Api.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Transactions;
 
 namespace Api.Infrastructure
 {
@@ -133,7 +135,7 @@ namespace Api.Infrastructure
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                throw new Exception("Can't execute transaction: " + ex);
+                throw new TransactionException("Can't execute transaction: " + ex);
             }
         }
 
@@ -149,7 +151,7 @@ namespace Api.Infrastructure
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                throw new Exception("Can't execute transaction: " + ex);
+                throw new TransactionException("Can't execute transaction: " + ex);
             }
         }
     }

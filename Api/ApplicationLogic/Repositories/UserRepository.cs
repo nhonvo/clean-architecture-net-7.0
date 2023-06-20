@@ -1,6 +1,6 @@
 using Api.Core.Entities;
-using Api.Infrastructure;
 using Api.Infrastructure.Interface;
+using Api.Infrastructure.Persistence;
 
 namespace Api.ApplicationLogic.Repositories
 {

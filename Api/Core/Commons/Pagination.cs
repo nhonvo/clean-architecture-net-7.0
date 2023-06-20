@@ -1,4 +1,4 @@
-namespace Api.Core
+namespace Api.Core.Commons
 {
     public class Pagination<T>
     {

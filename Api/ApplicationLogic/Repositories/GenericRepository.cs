@@ -1,6 +1,6 @@
-using Api.Core;
-using Api.Infrastructure;
+using Api.Core.Commons;
 using Api.Infrastructure.Interface;
+using Api.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

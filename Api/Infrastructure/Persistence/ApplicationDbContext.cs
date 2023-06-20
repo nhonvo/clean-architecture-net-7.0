@@ -1,14 +1,12 @@
-using System.Reflection;
 using Api.Core.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 #nullable disable
 
-namespace Api.Infrastructure
+namespace Api.Infrastructure.Persistence
 {
-    public class ApplicationDbContext :  DbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> context) : base(context)
         {

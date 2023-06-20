@@ -12,10 +12,13 @@ Sprint (1 week)
   - build skeleton project: connect with postgresql, rest api, etc
   - seed data
 - Sprint 2:
-  - add docker config : fail
-  - use fluent configuration
-  -  
+  <!-- - add docker config : done -->
+  <!-- - use fluent configuration -->
   <!-- - Separate file configuration -->
+  - implement slunk log
+    - Splunk
+    - Implement Splunk to C# project
+    - Free lic for dev here: https://dev.splunk.com/enterprise/dev_license
   - enhance code base
 - Sprint 3:
   - add test project.

@@ -1,6 +1,7 @@
-using System.Diagnostics;
 using Api.Infrastructure.Mapper;
+using Api.Presentation.Filters;
 using Api.Presentation.Middlewares;
+using System.Diagnostics;
 
 namespace Api.Presentation
 {
@@ -17,7 +18,10 @@ namespace Api.Presentation
             services.AddSingleton<Stopwatch>();
             services.AddHealthChecks();
 
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<ApiExceptionFilterAttribute>();
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();

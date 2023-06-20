@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Api.Infrastructure
+namespace Api.Infrastructure.Persistence
 {
     public class ApplicationDbContextInitializer
     {

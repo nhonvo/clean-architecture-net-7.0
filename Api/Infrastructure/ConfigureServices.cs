@@ -1,7 +1,6 @@
 using Api.ApplicationLogic.Repositories;
-using Api.ApplicationLogic.Services;
 using Api.Infrastructure.Interface;
-using Api.Infrastructure.IService;
+using Api.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 namespace Api.Infrastructure
 {
