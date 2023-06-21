@@ -1,4 +1,5 @@
 using Api.Core.Entities;
+using Api.Core.Models;
 using Api.Infrastructure;
 using Api.Infrastructure.IService;
 using AutoMapper;

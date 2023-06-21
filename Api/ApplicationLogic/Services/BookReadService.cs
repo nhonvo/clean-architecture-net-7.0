@@ -2,6 +2,7 @@ using Api.Core.Commons;
 using Api.Core.Entities;
 using Api.Infrastructure;
 using Api.Infrastructure.IService;
+using Api.Presentation.Constants;
 using AutoMapper;
 using System.Text.Json;
 
@@ -21,13 +22,13 @@ namespace Api.ApplicationLogic.Services
             => await _unitOfWork.BookRepository.ToPagination(pageIndex, pageSize);
         public async Task<Book> Get(int id)
             => await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id)
-                ?? throw new ArgumentNullException("Book not found");
+                ?? throw new ArgumentNullException(BookConstants.NotFoundMessage);
 
         public async Task Seed()
         {
             if (!await _unitOfWork.BookRepository.AnyAsync())
             {
-                string json = File.ReadAllText(@"./Infrastructure/Json/book.json");
+                string json = File.ReadAllText(LinkConstants.BookData);
                 List<Book> books = JsonSerializer.Deserialize<List<Book>>(json)!;
                 await _unitOfWork.ExecuteTransactionAsync(() =>
                 {
@@ -35,11 +36,5 @@ namespace Api.ApplicationLogic.Services
                 });
             };
         }
-    }
-    public class BookDTO
-    {
-        public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
-        public double? Price { get; set; }
     }
 }

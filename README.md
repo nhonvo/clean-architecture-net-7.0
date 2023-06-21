@@ -14,7 +14,7 @@ Project start day: Wednesday, 14/6/2023
 | 1   | Clear requirements and all technologies needed.          | 1    | 1      | 100%    |
 | 2   | build skeleton project: connect postgresql, rest api etc | 1    | 2      | 100%    |
 | 3   | Enhance codebase: separate services, refactor code.      | 0.5  | 1      | 100%    |
-| 4   | research and set up docker                               | 0.5  | 1      | 100 %   |
+| 4   | research and set up docker                               | 0.5  | 1      | 100%    |
 
 - Details:
   1. Write documentation [Architect](#architecture), [Technologies](#technologies),
@@ -30,6 +30,7 @@ Project start day: Wednesday, 14/6/2023
 | --- | -------------------------------------------------------- | ---- | ------ | ------- |
 | 1   | Enhance codebase Program.cs, set up docker               | 1    | 2      | 100%    |
 | 2   | Enhance code (fluentAPI, migration), research Splunk log | 1    | 2      | 100%    |
+| 3   | set up log, use const,                                   | 1    | 2      | 100%    |
 
 - Details:
   1. Enhance codebase Program.cs, set up docker
@@ -45,12 +46,17 @@ Project start day: Wednesday, 14/6/2023
         1. implement slunk log
         2. Implement Splunk to C# project
         3. Free lic for dev here: <https://dev.splunk.com/enterprise/dev_license>
-  3.
+  3. Enhance splunk configuration
+     1. Move configuration program to web api configuration
+     2. fix bug server spunk can not get data
+     3. use serilog instead of logging
+  4. Set up logging, use const
+     1. use Nlog and Splunk.
+     2. fix hard code(message, ...)
 
 - On Ready to go
   - Week 3:
     - add test project.
-    - optimize move and copy data seed type json correct destination
     - service test and unit tests
     - add identity user
       - jwt token

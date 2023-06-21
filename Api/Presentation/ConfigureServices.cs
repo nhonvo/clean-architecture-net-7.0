@@ -1,4 +1,4 @@
-using Api.Infrastructure.Mapper;
+using Api.ApplicationLogic.Mapper;
 using Api.Presentation.Filters;
 using Api.Presentation.Middlewares;
 using System.Diagnostics;
@@ -22,9 +22,11 @@ namespace Api.Presentation
             {
                 options.Filters.Add<ApiExceptionFilterAttribute>();
             });
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            // swagger
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
+
             return services;
         }
 

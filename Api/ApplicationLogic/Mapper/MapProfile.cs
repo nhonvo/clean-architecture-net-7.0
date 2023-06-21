@@ -1,8 +1,8 @@
-using Api.ApplicationLogic.Services;
 using Api.Core.Entities;
+using Api.Core.Models;
 using AutoMapper;
 
-namespace Api.Infrastructure.Mapper
+namespace Api.ApplicationLogic.Mapper
 {
     public class MapProfile : Profile
     {

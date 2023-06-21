@@ -1,5 +1,5 @@
-using Api.ApplicationLogic.Services;
 using Api.Core.Entities;
+using Api.Core.Models;
 
 namespace Api.Infrastructure.IService
 {

@@ -1,6 +1,7 @@
 using Api.Core.Commons;
 using Api.Infrastructure.Interface;
 using Api.Infrastructure.Persistence;
+using Api.Presentation.Constants;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -40,7 +41,8 @@ namespace Api.ApplicationLogic.Repositories
             => await _dbSet.CountAsync();
 
         public async Task<T> GetByIdAsync(object id)
-            => await _dbSet.FindAsync(id) ?? throw new ArgumentNullException("Can not found ");
+            => await _dbSet.FindAsync(id) 
+            ?? throw new ArgumentNullException(ErrorMessageConstants.NotFoundMessage);
 
         public async Task<Pagination<T>> ToPagination(int pageIndex, int pageSize)
         {
@@ -87,7 +89,8 @@ namespace Api.ApplicationLogic.Repositories
         public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter)
             => await _dbSet.IgnoreQueryFilters()
                             .AsNoTracking()
-                            .FirstOrDefaultAsync(filter) ?? throw new ArgumentNullException("Can not found ");
+                            .FirstOrDefaultAsync(filter)
+                            ?? throw new ArgumentNullException(ErrorMessageConstants.NotFoundMessage);
 
         #endregion
         #region Update & delete
