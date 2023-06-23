@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Api.ApplicationLogic.Mapper;
 using Api.Presentation.Filters;
 using Api.Presentation.Middlewares;
@@ -40,6 +41,13 @@ namespace Api.Presentation
                     //     .AllowAnyOrigin()
                     ;
                 });
+            });
+
+            // http client
+
+            services.AddHttpClient("name_client", options =>
+            {
+                options.BaseAddress = new Uri("http://localhost:5256");
             });
 
             return services;
