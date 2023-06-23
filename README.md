@@ -31,8 +31,8 @@ Project start day: Wednesday, 14/6/2023
 | 1   | Enhance codebase Program.cs, set up docker               | 1    | 2      | 100%    |
 | 2   | Enhance code (fluentAPI, migration), research Splunk log | 1    | 2      | 100%    |
 | 3   | set up log, use const,                                   | 1    | 2      | 100%    |
-| 4   | log, http client, cors                                   | 1    | 2      | 100%    |
-
+| 4   | Set up logging, use const                                |      |        |         |
+| 5   | log, http client, cors                                   | 1    | 2      | 100%    |
 
 - Details:
   1. Enhance codebase Program.cs, set up docker
@@ -55,10 +55,20 @@ Project start day: Wednesday, 14/6/2023
   4. Set up logging, use const
      1. use Nlog and Splunk.
      2. fix hard code(message, ...)
+  5. log, http client, cors
+     1. log: use log stack elk.
+     2. http client: create api base to send request.
+     3. CORS: set up 2 options allow and specific
 
 - On Ready to go
   - Week 3:
+    - add more appseting to save environment variables
+    - new relic, ..
+    - proxy
+    - ngix
     - add test project.
+    - add hangfire
+    - message bus
     - service test and unit tests
     - add identity user
       - jwt token
