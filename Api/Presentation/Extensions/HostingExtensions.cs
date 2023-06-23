@@ -1,6 +1,9 @@
 using Api.ApplicationLogic;
 using Api.Infrastructure;
+using Api.Infrastructure.Extensions;
 using Api.Infrastructure.Persistence;
+using Api.Presentation.Middlewares;
+using Serilog;
 
 namespace Api.Presentation.Extensions
 {
@@ -13,6 +16,8 @@ namespace Api.Presentation.Extensions
             builder.Services.AddInfrastructuresService(databaseConnection);
             builder.Services.AddApplicationService();
             builder.Services.AddWebAPIService();
+            builder.AddSerilog();
+
             return builder.Build();
         }
 
@@ -27,8 +32,12 @@ namespace Api.Presentation.Extensions
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            
             app.UseCors("_myAllowSpecificOrigins");
-
+            
+            app.UseMiddleware<GlobalExceptionMiddleware>();
+            
+            app.UseMiddleware<PerformanceMiddleware>();
             app.UseHttpsRedirection();
 
             app.MapHealthChecks("/hc");

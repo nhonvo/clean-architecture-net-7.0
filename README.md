@@ -26,13 +26,13 @@ Project start day: Wednesday, 14/6/2023
   4. research docker and build sample project.
 
 - Week 2: 19 - 23/6/2023
-| id  | task                                                              | days | points | Process |
-| --- | ----------------------------------------------------------------- | ---- | ------ | ------- |
-| 1   | Enhance codebase Program.cs, set up docker                        | 1    | 2      | 100%    |
-| 2   | Enhance code (fluentAPI, migration), research Splunk log          | 1    | 2      | 100%    |
-| 3   | set up log, use const,                                            | 1    | 2      | 100%    |
-| 4   | Set up logging, use const                                         |      |        |         |
-| 5   | eck log stack, health-check, http client, cors, ec add extensions | 1    | 2      | 100%    |
+| id  | task                                                     | days | points | Process |
+| --- | -------------------------------------------------------- | ---- | ------ | ------- |
+| 1   | Enhance codebase Program.cs, set up docker               | 1    | 2      | 100%    |
+| 2   | Enhance code (fluentAPI, migration), research Splunk log | 1    | 2      | 100%    |
+| 3   | set up log, use const,                                   | 1    | 2      | 100%    |
+| 4   | Set up logging, use const                                |      |        |         |
+| 5   | eck log stack, health-check, http client, cors           | 1    | 2      | 100%    |
 
 - Details:
   1. Enhance codebase Program.cs, set up docker
@@ -59,7 +59,6 @@ Project start day: Wednesday, 14/6/2023
      1. log: use log stack elk.
      2. http client: create api base to send request.
      3. CORS: set up 2 options allow and specific
-     4. ec add extensions
 
 - On Ready to go
   - Week 3:
@@ -135,21 +134,37 @@ application
 
 ## Dependencies
 
-- AutoMapper.Extensions.Microsoft.DependencyInjection  
-- FluentValidation  
-- FluentValidation.AspNetCore  
-- Microsoft.AspNetCore.Authentication.JwtBearer  
-- Microsoft.AspNetCore.OpenApi  
-- Microsoft.EntityFrameworkCore.Design  
-- Microsoft.EntityFrameworkCore.InMemory  
-- Microsoft.EntityFrameworkCore.SqlServer  
-- Microsoft.EntityFrameworkCore.Tools  
-- Newtonsoft.Json  
-- Serilog.AspNetCore  
-- Swashbuckle.AspNetCore  
-- Npgsql.EntityFrameworkCore.PostgreSQL
-- Microsoft.AspNetCore.Identity.EntityFrameworkCore
-- Nlog
-- Nlog.Extensions.Logging
-- Nlog.Targets.Splunk
-- Microsoft.Extensions.Logging
+- validator & mapping & json
+  - FluentValidation  
+  - FluentValidation.AspNetCore  
+  - Newtonsoft.Json  
+  - AutoMapper.Extensions.Microsoft.DependencyInjection  
+
+- ORM
+  - Microsoft.EntityFrameworkCore.Design  
+  - Microsoft.EntityFrameworkCore.InMemory  
+  - Microsoft.EntityFrameworkCore.SqlServer  
+  - Microsoft.EntityFrameworkCore.Tools  
+  - Npgsql.EntityFrameworkCore.PostgreSQL
+
+- Authenticate & Author
+  - Microsoft.AspNetCore.Authentication.JwtBearer  
+  - Microsoft.AspNetCore.Identity.EntityFrameworkCore
+
+- swagger
+  - Microsoft.AspNetCore.OpenApi  
+  - Swashbuckle.AspNetCore  
+
+- splunk stack
+  - Nlog
+  - Nlog.Extensions.Logging
+  - Nlog.Targets.Splunk
+  - Microsoft.Extensions.Logging
+
+- elk stack + log
+  - Serilog.AspNetCore
+  - Serilog.Enrichers.Environment
+  - Serilog.Exceptions
+  - Serilog.Sinks.Console
+  - Serilog.Sinks.Debug
+  - Serilog.Sinks.Elasticsearch
