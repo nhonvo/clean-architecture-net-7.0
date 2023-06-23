@@ -1,9 +1,12 @@
 using Api.ApplicationLogic.Mapper;
 using Api.Presentation.Filters;
 using Api.Presentation.Middlewares;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.Diagnostics;
 using System.IO.Compression;
+using System.Reflection;
 
 namespace Api.Presentation
 {
@@ -12,7 +15,12 @@ namespace Api.Presentation
         public static IServiceCollection AddWebAPIService(this IServiceCollection services)
         {
 
-            services.AddAutoMapper(typeof(MapProfile));
+            // services.AddAutoMapper(typeof(MapProfile));
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationClientsideAdapters();
 
             // Middleware
             services.AddSingleton<GlobalExceptionMiddleware>();

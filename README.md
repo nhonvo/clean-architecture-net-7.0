@@ -41,7 +41,7 @@ Project start day: Wednesday, 14/6/2023
      2. Set up docker: add docker file and docker compose. Connect to postgresql.
         1. Issue: when connecting to postgresql - Solutions: add environment variable, migrate same time docker compose.
   2. Enhance code (fluentAPI, migration), research Splunk log
-     1. Enhance code (fluentAPI, migration)
+     1. Enhance code (fluentAPI, migration, health check)
         1. add Persistence for fluentAPI configuration
         2. and ApplicationDbContextInitialize migration when application run
      2. research Splunk log
@@ -60,24 +60,24 @@ Project start day: Wednesday, 14/6/2023
      2. http client: create api base to send request.
      3. CORS: set up 2 options allow and specific
      4. gZip: compress file responses
+     5. validator
 
 - On Ready to go
   - Week 3:
-    - add more appseting to save environment variables
-    - research monitoring
-    - add ci/cd
-    - health check
-    - new relic, ..
-    - proxy
-    - redis cache container
-    - ngix
-    - add test project.
-    - add hangfire
-    - message bus
-    - service test and unit tests
-    - add identity user
+    - add identity user ****
       - jwt token
       - policy base.
+    - validation: what is _ValidateModelFilter.cs_ ?? Does it is Exceptions?
+    - message bus ****
+    - add more app_settings to save environment variables
+      - move model to project specific
+    - service test and unit tests ****
+    - research monitoring, new relic, ..
+    - add hangfire
+    - add ci/cd
+    - redis cache container
+    - proxy
+    - ngnix 
     - host to azure
   - Week 4:
     - review code
@@ -126,7 +126,7 @@ application
 - net v7.0
 - postgresql
 - docker
-- Nlog/Splunk
+- Nlog/Splunk : fail
 - redis
 - newrelics
 - Nginx
