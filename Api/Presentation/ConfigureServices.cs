@@ -26,6 +26,21 @@ namespace Api.Presentation
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
+            // cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "_myAllowSpecificOrigins",
+                policy =>
+                {
+                    policy.AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
+                    // policy.WithOrigins("localhost:5256", "template.com")
+                    //     .AllowAnyHeader()
+                    //     .AllowAnyOrigin()
+                    ;
+                });
+            });
 
             return services;
         }

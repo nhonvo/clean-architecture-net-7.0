@@ -31,6 +31,8 @@ Project start day: Wednesday, 14/6/2023
 | 1   | Enhance codebase Program.cs, set up docker               | 1    | 2      | 100%    |
 | 2   | Enhance code (fluentAPI, migration), research Splunk log | 1    | 2      | 100%    |
 | 3   | set up log, use const,                                   | 1    | 2      | 100%    |
+| 4   | log, http client, cors                                   | 1    | 2      | 100%    |
+
 
 - Details:
   1. Enhance codebase Program.cs, set up docker

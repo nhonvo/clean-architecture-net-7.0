@@ -27,6 +27,7 @@ namespace Api.Presentation.Extensions
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors("_myAllowSpecificOrigins");
 
             app.UseHttpsRedirection();
 
