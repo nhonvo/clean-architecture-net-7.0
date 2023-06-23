@@ -7,6 +7,5 @@ namespace Api.Infrastructure.IService
     {
         Task<Pagination<Book>> Get(int pageIndex, int pageSize);
         Task<Book> Get(int id);
-        Task Seed();
     }
 }

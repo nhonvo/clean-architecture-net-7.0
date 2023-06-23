@@ -1,12 +1,18 @@
 using Api.ApplicationLogic.Mapper;
+using Api.Core.Entities;
+using Api.Infrastructure.Persistence;
 using Api.Presentation.Filters;
 using Api.Presentation.Middlewares;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Reflection;
+using System.Text;
 
 namespace Api.Presentation
 {
@@ -14,9 +20,6 @@ namespace Api.Presentation
     {
         public static IServiceCollection AddWebAPIService(this IServiceCollection services)
         {
-
-            // services.AddAutoMapper(typeof(MapProfile));
-
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddFluentValidationAutoValidation();
@@ -82,6 +85,43 @@ namespace Api.Presentation
             {
                 options.Level = CompressionLevel.Optimal;
             });
+            // jwt
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = "issuer",
+                    ValidAudience = "audience",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("key")),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = true
+                };
+            });
+            // identity user
+            services.AddIdentity<User, Role>(options =>
+            {
+                // Sign In Settings
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedEmail = false;
+                // Password Settings
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 0;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 0;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             return services;
         }
 

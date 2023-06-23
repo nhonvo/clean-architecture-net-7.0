@@ -23,18 +23,5 @@ namespace Api.ApplicationLogic.Services
         public async Task<Book> Get(int id)
             => await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id)
                 ?? throw new ArgumentNullException(BookConstants.NotFoundMessage);
-
-        public async Task Seed()
-        {
-            if (!await _unitOfWork.BookRepository.AnyAsync())
-            {
-                string json = File.ReadAllText(LinkConstants.BookData);
-                List<Book> books = JsonSerializer.Deserialize<List<Book>>(json)!;
-                await _unitOfWork.ExecuteTransactionAsync(() =>
-                {
-                    _unitOfWork.BookRepository.AddRangeAsync(books);
-                });
-            };
-        }
     }
 }

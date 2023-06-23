@@ -32,7 +32,9 @@ Project start day: Wednesday, 14/6/2023
 | 2   | Enhance code (fluentAPI, migration), research Splunk log | 1    | 2      | 100%    |
 | 3   | set up log, use const,                                   | 1    | 2      | 100%    |
 | 4   | Set up logging, use const                                |      |        |         |
-| 5   | serilog, health-check, http client, cors, gzip           | 1    | 2      | 100%    |
+| 5   | serilog, health-check, http client                       | 1    | 2      | 100%    |
+|     | cors, gzip, validator                                    | 1    | 2      | 100%    |
+| 6   |                                                          |      |        |         |
 
 - Details:
   1. Enhance codebase Program.cs, set up docker
@@ -67,17 +69,17 @@ Project start day: Wednesday, 14/6/2023
     - add identity user ****
       - jwt token
       - policy base.
-    - validation: what is _ValidateModelFilter.cs_ ?? Does it is Exceptions?
+    <!-- - validation: what is _ValidateModelFilter.cs_ ?? Does it is Exceptions? -->
     - message bus ****
+    - service test and unit tests ****
     - add more app_settings to save environment variables
       - move model to project specific
-    - service test and unit tests ****
-    - research monitoring, new relic, ..
+    - research monitoring, new relic, .. ****
     - add hangfire
     - add ci/cd
     - redis cache container
     - proxy
-    - ngnix 
+      - ngnix
     - host to azure
   - Week 4:
     - review code
@@ -156,11 +158,11 @@ application
   - Microsoft.AspNetCore.OpenApi  
   - Swashbuckle.AspNetCore  
 
-- splunk stack
+<!-- - splunk stack
   - Nlog
   - Nlog.Extensions.Logging
   - Nlog.Targets.Splunk
-  - Microsoft.Extensions.Logging
+  - Microsoft.Extensions.Logging -->
 
 - elk stack + log
   - Serilog.AspNetCore
@@ -168,4 +170,4 @@ application
   - Serilog.Exceptions
   - Serilog.Sinks.Console
   - Serilog.Sinks.Debug
-  - Serilog.Sinks.Elasticsearch
+  <!-- - Serilog.Sinks.Elasticsearch -->

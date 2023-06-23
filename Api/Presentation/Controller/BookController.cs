@@ -1,14 +1,11 @@
 using Api.Core.Entities;
 using Api.Core.Models;
 using Api.Infrastructure.IService;
-using Api.Presentation.Constants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Presentation.Controller
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class BookController : ControllerBase
+    public class BookController : BaseController
     {
         private readonly IBookReadService _bookReadService;
         private readonly IBookWriteService _bookWriteService;
@@ -19,14 +16,6 @@ namespace Api.Presentation.Controller
             _bookReadService = bookReadService;
             _bookWriteService = bookWriteService;
         }
-
-        [HttpGet("seed")]
-        public async Task<IActionResult> Seed()
-        {
-            await _bookReadService.Seed();
-            return Ok(BookConstants.SeedDataSuccessMessage);
-        }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
             => Ok(await _bookReadService.Get(id));
