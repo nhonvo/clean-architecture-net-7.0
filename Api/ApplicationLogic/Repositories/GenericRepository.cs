@@ -41,7 +41,7 @@ namespace Api.ApplicationLogic.Repositories
             => await _dbSet.CountAsync();
 
         public async Task<T> GetByIdAsync(object id)
-            => await _dbSet.FindAsync(id) 
+            => await _dbSet.FindAsync(id)
             ?? throw new ArgumentNullException(ErrorMessageConstants.NotFoundMessage);
 
         public async Task<Pagination<T>> ToPagination(int pageIndex, int pageSize)

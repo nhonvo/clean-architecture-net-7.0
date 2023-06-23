@@ -1,8 +1,8 @@
-using System.Net.Http.Headers;
-using System.Text;
 using Api.Core.Models;
 using Api.Core.Utilities;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace Api.Presentation.Services
 {
@@ -46,7 +46,7 @@ namespace Api.Presentation.Services
                         message.Method = HttpMethod.Delete;
                         break;
                 }
-                HttpResponseMessage responseMessage =  await client.SendAsync(message);
+                HttpResponseMessage responseMessage = await client.SendAsync(message);
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
                 var APIResponse = JsonConvert.DeserializeObject<T>(responseContent);
                 return APIResponse ?? throw new ArgumentNullException("APIresponse nothing");

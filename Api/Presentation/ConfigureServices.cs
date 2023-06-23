@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using Api.ApplicationLogic.Mapper;
 using Api.Presentation.Filters;
 using Api.Presentation.Middlewares;
