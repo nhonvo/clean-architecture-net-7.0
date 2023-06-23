@@ -1,10 +1,6 @@
 using Api.Core;
 using Api.Presentation.Constants;
 using Api.Presentation.Extensions;
-using NLog;
-using NLog.Common;
-using NLog.Extensions.Logging;
-using Splunk.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 

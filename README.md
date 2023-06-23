@@ -32,7 +32,7 @@ Project start day: Wednesday, 14/6/2023
 | 2   | Enhance code (fluentAPI, migration), research Splunk log | 1    | 2      | 100%    |
 | 3   | set up log, use const,                                   | 1    | 2      | 100%    |
 | 4   | Set up logging, use const                                |      |        |         |
-| 5   | log, http client, cors                                   | 1    | 2      | 100%    |
+| 5   | log, http client, cors, ec add extensions                | 1    | 2      | 100%    |
 
 - Details:
   1. Enhance codebase Program.cs, set up docker
@@ -59,12 +59,15 @@ Project start day: Wednesday, 14/6/2023
      1. log: use log stack elk.
      2. http client: create api base to send request.
      3. CORS: set up 2 options allow and specific
+     4. ec add extensions
 
 - On Ready to go
   - Week 3:
     - add more appseting to save environment variables
+    - health check
     - new relic, ..
     - proxy
+    - redis cache container
     - ngix
     - add test project.
     - add hangfire
@@ -73,6 +76,7 @@ Project start day: Wednesday, 14/6/2023
     - add identity user
       - jwt token
       - policy base.
+    - host to azure
   - Week 4:
     - review code
     - release
