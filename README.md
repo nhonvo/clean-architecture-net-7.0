@@ -26,13 +26,13 @@ Project start day: Wednesday, 14/6/2023
   4. research docker and build sample project.
 
 - Week 2: 19 - 23/6/2023
-| id  | task                                                     | days | points | Process |
-| --- | -------------------------------------------------------- | ---- | ------ | ------- |
-| 1   | Enhance codebase Program.cs, set up docker               | 1    | 2      | 100%    |
-| 2   | Enhance code (fluentAPI, migration), research Splunk log | 1    | 2      | 100%    |
-| 3   | set up log, use const,                                   | 1    | 2      | 100%    |
-| 4   | Set up logging, use const                                |      |        |         |
-| 5   | log, http client, cors, ec add extensions                | 1    | 2      | 100%    |
+| id  | task                                                              | days | points | Process |
+| --- | ----------------------------------------------------------------- | ---- | ------ | ------- |
+| 1   | Enhance codebase Program.cs, set up docker                        | 1    | 2      | 100%    |
+| 2   | Enhance code (fluentAPI, migration), research Splunk log          | 1    | 2      | 100%    |
+| 3   | set up log, use const,                                            | 1    | 2      | 100%    |
+| 4   | Set up logging, use const                                         |      |        |         |
+| 5   | eck log stack, health-check, http client, cors, ec add extensions | 1    | 2      | 100%    |
 
 - Details:
   1. Enhance codebase Program.cs, set up docker
@@ -64,6 +64,8 @@ Project start day: Wednesday, 14/6/2023
 - On Ready to go
   - Week 3:
     - add more appseting to save environment variables
+    - research monitoring
+    - add ci/cd
     - health check
     - new relic, ..
     - proxy
