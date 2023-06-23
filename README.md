@@ -32,7 +32,7 @@ Project start day: Wednesday, 14/6/2023
 | 2   | Enhance code (fluentAPI, migration), research Splunk log | 1    | 2      | 100%    |
 | 3   | set up log, use const,                                   | 1    | 2      | 100%    |
 | 4   | Set up logging, use const                                |      |        |         |
-| 5   | eck log stack, health-check, http client, cors           | 1    | 2      | 100%    |
+| 5   | serilog, health-check, http client, cors, gzip           | 1    | 2      | 100%    |
 
 - Details:
   1. Enhance codebase Program.cs, set up docker
@@ -56,9 +56,10 @@ Project start day: Wednesday, 14/6/2023
      1. use Nlog and Splunk.
      2. fix hard code(message, ...)
   5. log, http client, cors
-     1. log: use log stack elk.
+     1. set up serilog, cant use elk stack ram pc do not enough.
      2. http client: create api base to send request.
      3. CORS: set up 2 options allow and specific
+     4. gZip: compress file responses
 
 - On Ready to go
   - Week 3:

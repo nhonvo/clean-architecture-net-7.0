@@ -32,12 +32,17 @@ namespace Api.Presentation.Extensions
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            
+
             app.UseCors("_myAllowSpecificOrigins");
-            
+
             app.UseMiddleware<GlobalExceptionMiddleware>();
-            
+
             app.UseMiddleware<PerformanceMiddleware>();
+
+            app.UseResponseCompression();
+
+            app.UseResponseCompression();
+
             app.UseHttpsRedirection();
 
             app.MapHealthChecks("/hc");
