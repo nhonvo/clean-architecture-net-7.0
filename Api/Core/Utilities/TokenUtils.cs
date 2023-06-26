@@ -11,44 +11,49 @@ namespace Api.Core.Utilities
     {
         public static string Authenticate(this User user, IList<string> roles, string issuer, string audience, string key, ICurrentTime time)
         {
-            var tokenClaims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Email, user.Email ?? ""),
-            new Claim(ClaimTypes.Name, user.UserName ?? ""),
-        };
-            foreach (var role in roles)
-                tokenClaims.Add(new Claim(ClaimTypes.Role, role));
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
-            var tokenCredentials = new SigningCredentials(tokenKey, SecurityAlgorithms.HmacSha256);
-            var tokenDescriptor = new SecurityTokenDescriptor
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new List<Claim>
             {
-
-                Subject = new ClaimsIdentity(tokenClaims),
-                Issuer = issuer,
-                Audience = audience,
-                Expires = time.GetCurrentTime().AddMinutes(10),
-                SigningCredentials = tokenCredentials,
+                new Claim("ID", user.Id.ToString()),
+                new Claim("Email", user.Email!),
+                new Claim("Phone", user.PhoneNumber!),
+                new Claim(JwtRegisteredClaimNames.Name, user.UserName!),
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            foreach (var role in roles)
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            var token = new JwtSecurityToken(
+                    claims: claims,
+                    expires: time.GetCurrentTime().AddMinutes(10),
+                    audience: audience,
+                    issuer: issuer,
+                    signingCredentials: credentials
+                );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+
         }
+
         // For MVC
         public static ClaimsPrincipal Validate(this string token, string issuer, string audience, string key)
         {
             IdentityModelEventSource.ShowPII = true;
             TokenValidationParameters validationParameters = new()
             {
-                ValidateLifetime = true,
-                ValidAudience = audience,
                 ValidIssuer = issuer,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+                ValidAudience = audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = false,
+                ValidateIssuerSigningKey = true
             };
 
             var principal = new JwtSecurityTokenHandler().ValidateToken(token, validationParameters, out _);
 
             return principal;
         }
+
         public static DateTime GetExpireDate(this string token, ICurrentTime currentTime)
         {
             JwtSecurityToken jwt = new(token);

@@ -17,7 +17,6 @@ namespace Api.Presentation.Controller
             _bookReadService = bookReadService;
             _bookWriteService = bookWriteService;
         }
-        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
             => Ok(await _bookReadService.Get(id));

@@ -63,12 +63,13 @@ Project start day: Wednesday, 14/6/2023
      3. CORS: set up 2 options allow and specific
      4. gZip: compress file responses
      5. validator
-  6. jwt, retry, test project, ec, message sns
+  6. jwt, retry, test project, ec, message sns, hangfire
      1. jwt
      2. retry: install polly lib and add retry for http client
      3. test project use nUnit test
      4. ec (appsetting.json)
      5. message sns
+     6. hangfire
 
 - On Ready to go
   - Week 3:
