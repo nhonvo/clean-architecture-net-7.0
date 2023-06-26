@@ -50,6 +50,8 @@ namespace Api.Presentation.Extensions
 
             app.MapHealthChecks("/hc");
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.MapControllers();

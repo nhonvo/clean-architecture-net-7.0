@@ -17,11 +17,11 @@ namespace Api.Presentation.Controller
             _bookReadService = bookReadService;
             _bookWriteService = bookWriteService;
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
             => Ok(await _bookReadService.Get(id));
 
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Get(int pageIndex = 0, int pageSize = 10)
             => Ok(await _bookReadService.Get(pageIndex, pageSize));
