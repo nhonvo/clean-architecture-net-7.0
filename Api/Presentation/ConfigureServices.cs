@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Polly;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Reflection;
@@ -102,7 +103,11 @@ namespace Api.Presentation
             services.AddHttpClient("name_client", options =>
             {
                 options.BaseAddress = new Uri("http://localhost:5256");
-            });
+            }).AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(new[]{
+                TimeSpan.FromSeconds(1),
+                TimeSpan.FromSeconds(2),
+                TimeSpan.FromSeconds(3)
+            }));
 
             // Compression
             services.AddResponseCompression(options =>

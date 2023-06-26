@@ -34,7 +34,7 @@ Project start day: Wednesday, 14/6/2023
 | 4   | Set up logging, use const                                |      |        |         |
 | 5   | serilog, health-check, http client                       | 1    | 2      | 100%    |
 |     | cors, gzip, validator                                    | 1    | 2      | 100%    |
-| 6   | jwt, retry, test project                                 |      |        |         |
+| 6   | jwt, retry, test project, ec(app.json)                   |      |        |         |
 
 - Details:
   1. Enhance codebase Program.cs, set up docker
@@ -63,9 +63,12 @@ Project start day: Wednesday, 14/6/2023
      3. CORS: set up 2 options allow and specific
      4. gZip: compress file responses
      5. validator
-  6. jwt, retry, test project
-     1. jwt done
-     2. 
+  6. jwt, retry, test project, ec, message sns
+     1. jwt
+     2. retry: install polly lib and add retry for http client
+     3. test project use nUnit test
+     4. ec (appsetting.json)
+     5. message sns
 
 - On Ready to go
   - Week 3:
@@ -176,3 +179,5 @@ application
   - Serilog.Sinks.Console
   - Serilog.Sinks.Debug
   <!-- - Serilog.Sinks.Elasticsearch -->
+- retry
+  - RefreshMicrosoft.Extensions.Http.Polly
