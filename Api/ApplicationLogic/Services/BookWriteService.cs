@@ -1,8 +1,8 @@
 using Api.ApplicationLogic.Interface;
 using Api.Core.Entities;
-using Api.Core.Models;
 using Api.Infrastructure;
 using AutoMapper;
+using Models.Book;
 
 namespace Api.ApplicationLogic.Services
 {

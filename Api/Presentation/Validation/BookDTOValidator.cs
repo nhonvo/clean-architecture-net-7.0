@@ -1,5 +1,5 @@
-using Api.Core.Models;
 using FluentValidation;
+using Models.Book;
 
 namespace Api.Presentation.Validation
 {

@@ -1,6 +1,7 @@
 using Api.Core.Entities;
-using Api.Core.Models;
 using AutoMapper;
+using Models.Book;
+using Models.User;
 
 namespace Api.ApplicationLogic.Mapper
 {

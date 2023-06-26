@@ -1,5 +1,5 @@
 using Api.Core.Entities;
-using Api.Core.Models;
+using Models.Book;
 
 namespace Api.ApplicationLogic.Interface
 {

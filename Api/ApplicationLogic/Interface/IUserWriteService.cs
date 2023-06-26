@@ -1,4 +1,4 @@
-using Api.Core.Models;
+using Models.User;
 
 namespace Api.ApplicationLogic.Interface
 {

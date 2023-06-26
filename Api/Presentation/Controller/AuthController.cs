@@ -1,6 +1,6 @@
 using Api.ApplicationLogic.Interface;
-using Api.Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using Models.User;
 
 namespace Api.Presentation.Controller
 {

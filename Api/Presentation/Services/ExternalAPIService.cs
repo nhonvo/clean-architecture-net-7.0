@@ -1,5 +1,5 @@
-using Api.Core.Models;
-using Api.Core.Utilities;
+using Models.ApiResult;
+using Models.Utilities;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;

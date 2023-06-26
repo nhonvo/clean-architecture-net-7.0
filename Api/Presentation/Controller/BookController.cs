@@ -1,8 +1,7 @@
 using Api.ApplicationLogic.Interface;
 using Api.Core.Entities;
-using Api.Core.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models.Book;
 
 namespace Api.Presentation.Controller
 {
