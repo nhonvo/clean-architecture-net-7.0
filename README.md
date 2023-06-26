@@ -34,7 +34,6 @@ Project start day: Wednesday, 14/6/2023
 | 4   | Set up logging, use const                                |      |        |         |
 | 5   | serilog, health-check, http client                       | 1    | 2      | 100%    |
 |     | cors, gzip, validator                                    | 1    | 2      | 100%    |
-| 6   | jwt, retry, test project, ec(app.json)                   |      |        |         |
 
 - Details:
   1. Enhance codebase Program.cs, set up docker
@@ -63,13 +62,19 @@ Project start day: Wednesday, 14/6/2023
      3. CORS: set up 2 options allow and specific
      4. gZip: compress file responses
      5. validator
-  6. jwt, retry, test project, ec, message sns, hangfire
+
+- Week 2: 26 - 30/6/2023
+| id  | task                     | days | points | Process |
+| --- | ------------------------ | ---- | ------ | ------- |
+| 1   | jwt, retry, test project |      |        |         |
+
+  1. jwt, retry, test project, ec, message sns, hangfire
      1. jwt
      2. retry: install polly lib and add retry for http client
      3. test project use nUnit test
-     4. ec (appsetting.json)
-     5. message sns
-     6. hangfire
+  2. message sns, hangfire
+     1. message sns
+     2. hangfire
 
 - On Ready to go
   - Week 3:
