@@ -11,11 +11,14 @@ namespace Api.Presentation.Extensions
     {
         public static WebApplication ConfigureServices(
             this WebApplicationBuilder builder,
-            string databaseConnection)
+            string databaseConnection,
+            string audience,
+            string issuer,
+            string key)
         {
             builder.Services.AddInfrastructuresService(databaseConnection);
             builder.Services.AddApplicationService();
-            builder.Services.AddWebAPIService();
+            builder.Services.AddWebAPIService(audience, issuer, key);
             builder.AddSerilog();
 
             return builder.Build();

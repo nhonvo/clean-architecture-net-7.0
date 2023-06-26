@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Reflection;
@@ -18,7 +19,11 @@ namespace Api.Presentation
 {
     public static class ConfigureServices
     {
-        public static IServiceCollection AddWebAPIService(this IServiceCollection services)
+        public static IServiceCollection AddWebAPIService(
+            this IServiceCollection services,
+            string audience,
+            string issuer,
+            string key)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
@@ -37,7 +42,45 @@ namespace Api.Presentation
             });
             // swagger
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Template",
+                    Version = "v1",
+                    Description = "API template project",
+                    Contact = new OpenApiContact
+                    {
+                        Url = new Uri("https://google.com")
+                    }
+                });
+
+                // Add JWT authentication support in Swagger
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                };
+
+                options.AddSecurityDefinition("Bearer", securityScheme);
+
+                var securityRequirement = new OpenApiSecurityRequirement
+                {
+                        {
+                            securityScheme, new[] { "Bearer" }
+                        }
+                };
+
+                options.AddSecurityRequirement(securityRequirement);
+            });
 
             // cors
             services.AddCors(options =>
@@ -95,9 +138,9 @@ namespace Api.Presentation
             {
                 o.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidIssuer = "issuer",
-                    ValidAudience = "audience",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("key")),
+                    ValidIssuer = issuer,
+                    ValidAudience = audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = false,

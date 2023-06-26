@@ -11,6 +11,8 @@ namespace Api.ApplicationLogic
             services.AddScoped<IBookReadService, BookReadService>();
             services.AddScoped<IBookWriteService, BookWriteService>();
             services.AddScoped<ISeedService, SeedService>();
+            services.AddSingleton<ICurrentTime, CurrentTime>();
+
             return services;
         }
     }

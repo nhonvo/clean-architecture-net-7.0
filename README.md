@@ -34,7 +34,7 @@ Project start day: Wednesday, 14/6/2023
 | 4   | Set up logging, use const                                |      |        |         |
 | 5   | serilog, health-check, http client                       | 1    | 2      | 100%    |
 |     | cors, gzip, validator                                    | 1    | 2      | 100%    |
-| 6   |                                                          |      |        |         |
+| 6   | jwt, retry, test project                                 |      |        |         |
 
 - Details:
   1. Enhance codebase Program.cs, set up docker
@@ -63,13 +63,18 @@ Project start day: Wednesday, 14/6/2023
      3. CORS: set up 2 options allow and specific
      4. gZip: compress file responses
      5. validator
+  6. jwt, retry, test project
+     1. jwt done
+     2. 
 
 - On Ready to go
   - Week 3:
-    - add identity user ****
-      - jwt token
-      - policy base.
-    <!-- - validation: what is _ValidateModelFilter.cs_ ?? Does it is Exceptions? -->
+    - move file code to correct location
+      - service interface to application
+    - enhance auth
+      - validate for model
+      - optimize response
+      - code more methods like get list(),...
     - message bus ****
     - service test and unit tests ****
     - add more app_settings to save environment variables

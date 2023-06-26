@@ -1,6 +1,7 @@
 using Api.Core.Entities;
 using Api.Core.Models;
 using Api.Infrastructure.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Presentation.Controller
@@ -20,6 +21,7 @@ namespace Api.Presentation.Controller
         public async Task<IActionResult> Get(int id)
             => Ok(await _bookReadService.Get(id));
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Get(int pageIndex = 0, int pageSize = 10)
             => Ok(await _bookReadService.Get(pageIndex, pageSize));
