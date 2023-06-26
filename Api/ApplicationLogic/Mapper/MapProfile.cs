@@ -9,11 +9,11 @@ namespace Api.ApplicationLogic.Mapper
         public MapProfile()
         {
             CreateMap<Book, BookDTO>().ReverseMap();
-            
+
             CreateMap<User, LoginRequest>().ReverseMap();
             CreateMap<User, RegisterRequest>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();
-        
+
         }
     }
 }

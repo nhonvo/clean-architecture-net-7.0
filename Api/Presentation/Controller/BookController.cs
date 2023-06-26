@@ -1,6 +1,6 @@
+using Api.ApplicationLogic.Interface;
 using Api.Core.Entities;
 using Api.Core.Models;
-using Api.Infrastructure.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

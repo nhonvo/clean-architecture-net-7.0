@@ -1,4 +1,4 @@
-using Api.Infrastructure.IService;
+using Api.ApplicationLogic.Interface;
 using Api.Presentation.Constants;
 using Microsoft.AspNetCore.Mvc;
 

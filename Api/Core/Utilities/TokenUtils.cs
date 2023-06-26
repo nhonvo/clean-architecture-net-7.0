@@ -1,5 +1,5 @@
+using Api.ApplicationLogic.Interface;
 using Api.Core.Entities;
-using Api.Infrastructure.IService;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

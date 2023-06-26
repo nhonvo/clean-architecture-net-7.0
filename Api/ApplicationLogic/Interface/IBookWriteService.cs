@@ -1,7 +1,7 @@
 using Api.Core.Entities;
 using Api.Core.Models;
 
-namespace Api.Infrastructure.IService
+namespace Api.ApplicationLogic.Interface
 {
     public interface IBookWriteService
     {

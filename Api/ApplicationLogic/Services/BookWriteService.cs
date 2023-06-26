@@ -1,7 +1,7 @@
+using Api.ApplicationLogic.Interface;
 using Api.Core.Entities;
 using Api.Core.Models;
 using Api.Infrastructure;
-using Api.Infrastructure.IService;
 using AutoMapper;
 
 namespace Api.ApplicationLogic.Services

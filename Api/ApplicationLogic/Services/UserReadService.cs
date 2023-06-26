@@ -1,5 +1,5 @@
+using Api.ApplicationLogic.Interface;
 using Api.Infrastructure.Interface;
-using Api.Infrastructure.IService;
 
 namespace Api.ApplicationLogic.Services
 {

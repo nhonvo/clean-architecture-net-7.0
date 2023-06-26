@@ -1,7 +1,7 @@
 using Api.Core.Commons;
 using Api.Core.Entities;
 
-namespace Api.Infrastructure.IService
+namespace Api.ApplicationLogic.Interface
 {
     public interface IBookReadService
     {

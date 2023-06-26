@@ -1,5 +1,5 @@
+using Api.ApplicationLogic.Interface;
 using Api.ApplicationLogic.Services;
-using Api.Infrastructure.IService;
 namespace Api.ApplicationLogic
 {
     public static class ConfigureServices

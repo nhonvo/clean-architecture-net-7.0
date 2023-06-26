@@ -1,5 +1,5 @@
+using Api.ApplicationLogic.Interface;
 using Api.Core.Models;
-using Api.Infrastructure.IService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Presentation.Controller

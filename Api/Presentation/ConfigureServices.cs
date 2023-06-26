@@ -1,4 +1,3 @@
-using Api.ApplicationLogic.Mapper;
 using Api.Core.Entities;
 using Api.Infrastructure.Persistence;
 using Api.Presentation.Filters;
