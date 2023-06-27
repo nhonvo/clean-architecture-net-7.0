@@ -10,12 +10,10 @@ namespace Api.ApplicationLogic.Services
 {
     public class SeedService : ISeedService
     {
-        private readonly UserManager<User> _userManager;
         private readonly IUnitOfWork _unitOfWork;
 
-        public SeedService(UserManager<User> userManager, IUnitOfWork unitOfWork)
+        public SeedService(IUnitOfWork unitOfWork)
         {
-            _userManager = userManager;
             _unitOfWork = unitOfWork;
         }
         public async Task Seed()
@@ -35,19 +33,15 @@ namespace Api.ApplicationLogic.Services
                 // List<User> users = JsonSerializer.Deserialize<List<User>>(json)!;
                 User user = new User
                 {
-                    UserName = "Truong Nhon",
-                    PasswordHash = StringHelper.Hash("P@ssw0rd"),
-                    PhoneNumber = "0905726748",
-                    Email = "vothuongtruongnhon2002@gmail.com"
+                    UserName = "TruongNhon",
+                    Password = "$2a$11$S/EGdnCaX2mhpkkoTSIBLeuPcyCg6rUxBMww3UHdg1yOAK31lG/cO",
+                    Email = "vothuongtruongnhon2002@gmail.com",
+                    Role = Core.Enum.Role.Admin
                 };
                 await _unitOfWork.ExecuteTransactionAsync(async () =>
                 {
-                    await _userManager.CreateAsync(user);
+                    await _unitOfWork.UserRepository.AddAsync(user);
                 });
-                // await _unitOfWork.ExecuteTransactionAsync(async () =>
-                // {
-                //     await _userManager.AddToRoleAsync(user, "ADMIN");
-                // });
             };
         }
     }

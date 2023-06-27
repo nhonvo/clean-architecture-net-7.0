@@ -67,14 +67,15 @@ Project start day: Wednesday, 14/6/2023
 | id  | task                     | days | points | Process |
 | --- | ------------------------ | ---- | ------ | ------- |
 | 1   | jwt, retry, test project |      |        |         |
+| 1   | remove libs,             |      |        |         |
 
-  1. jwt, retry, test project, ec, message sns, hangfire
+  1. jwt, retry, test project, ec, 
      1. jwt
      2. retry: install polly lib and add retry for http client
      3. test project use nUnit test
-  2. message sns, hangfire
-     1. message sns
-     2. hangfire
+  2. remove libs
+     1. cors, retry, identity
+
 
 - On Ready to go
   - Week 3:

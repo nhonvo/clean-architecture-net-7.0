@@ -9,19 +9,18 @@ namespace Api.Core.Utilities
 {
     public static class TokenUtils
     {
-        public static string Authenticate(this User user, IList<string> roles, string issuer, string audience, string key, ICurrentTime time)
+        public static string Authenticate(this User user, string issuer, string audience, string key, ICurrentTime time)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var claims = new List<Claim>
+            var claims = new[]
             {
                 new Claim("ID", user.Id.ToString()),
                 new Claim("Email", user.Email!),
-                new Claim("Phone", user.PhoneNumber!),
                 new Claim(JwtRegisteredClaimNames.Name, user.UserName!),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
             };
-            foreach (var role in roles)
-                claims.Add(new Claim(ClaimTypes.Role, role));
+
             var token = new JwtSecurityToken(
                     claims: claims,
                     expires: time.GetCurrentTime().AddMinutes(10),
@@ -31,7 +30,6 @@ namespace Api.Core.Utilities
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-
         }
 
         // For MVC

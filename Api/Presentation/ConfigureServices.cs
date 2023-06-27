@@ -83,31 +83,31 @@ namespace Api.Presentation
             });
 
             // cors
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: "_myAllowSpecificOrigins",
-                policy =>
-                {
-                    policy.AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowAnyOrigin();
-                    // policy.WithOrigins("localhost:5256", "template.com")
-                    //     .AllowAnyHeader()
-                    //     .AllowAnyOrigin()
-                    ;
-                });
-            });
+            // services.AddCors(options =>
+            // {
+            //     options.AddPolicy(name: "_myAllowSpecificOrigins",
+            //     policy =>
+            //     {
+            //         policy.AllowAnyHeader()
+            //             .AllowAnyMethod()
+            //             .AllowAnyOrigin();
+            //         // policy.WithOrigins("localhost:5256", "template.com")
+            //         //     .AllowAnyHeader()
+            //         //     .AllowAnyOrigin()
+            //         ;
+            //     });
+            // });
 
             // http client
-
             services.AddHttpClient("name_client", options =>
             {
                 options.BaseAddress = new Uri("http://localhost:5256");
-            }).AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(new[]{
-                TimeSpan.FromSeconds(1),
-                TimeSpan.FromSeconds(2),
-                TimeSpan.FromSeconds(3)
-            }));
+            });
+            // .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(new[]{
+            //     TimeSpan.FromSeconds(1),
+            //     TimeSpan.FromSeconds(2),
+            //     TimeSpan.FromSeconds(3)
+            // }));
 
             // Compression
             services.AddResponseCompression(options =>
@@ -151,24 +151,6 @@ namespace Api.Presentation
                     ValidateIssuerSigningKey = true
                 };
             });
-            // identity user
-            services.AddIdentity<User, Role>(options =>
-            {
-                // Sign In Settings
-                options.SignIn.RequireConfirmedPhoneNumber = false;
-                options.SignIn.RequireConfirmedAccount = false;
-                options.SignIn.RequireConfirmedEmail = false;
-                // Password Settings
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 0;
-                options.Password.RequireLowercase = false;
-                options.Password.RequiredUniqueChars = 0;
-            })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
             return services;
         }
 

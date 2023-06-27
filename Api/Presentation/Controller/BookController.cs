@@ -1,5 +1,6 @@
 using Api.ApplicationLogic.Interface;
 using Api.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Book;
 
@@ -20,9 +21,10 @@ namespace Api.Presentation.Controller
         public async Task<IActionResult> Get(int id)
             => Ok(await _bookReadService.Get(id));
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Get(int pageIndex = 0, int pageSize = 10)
-            => Ok(await _bookReadService.Get(pageIndex, pageSize));
+                    => Ok(await _bookReadService.Get(pageIndex, pageSize));
 
         [HttpPost]
         public async Task<IActionResult> Add(BookDTO request)

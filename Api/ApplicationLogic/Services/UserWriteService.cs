@@ -2,9 +2,8 @@ using Api.ApplicationLogic.Interface;
 using Api.Core;
 using Api.Core.Entities;
 using Api.Core.Utilities;
-using Api.Infrastructure.Interface;
+using Api.Infrastructure;
 using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using Models.User;
 using System.Transactions;
 
@@ -12,37 +11,33 @@ namespace Api.ApplicationLogic.Services
 {
     public class UserWriteService : IUserWriteService
     {
-        private readonly IUserRepository _userRepository;
-        private readonly UserManager<User> _userManager;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly AppConfiguration _configuration;
         private readonly ICurrentTime _currentTime;
-        public UserWriteService(IUserRepository userRepository,
-            UserManager<User> userManager,
+        public UserWriteService(
             IMapper mapper,
             AppConfiguration configuration,
-            ICurrentTime currentTime)
+            ICurrentTime currentTime,
+            IUnitOfWork unitOfWork)
         {
-            _userRepository = userRepository;
-            _userManager = userManager;
             _mapper = mapper;
             _configuration = configuration;
             _currentTime = currentTime;
+            _unitOfWork = unitOfWork;
         }
         public async Task<UserDTO> Authenticate(LoginRequest request)
         {
-            var user = await _userManager.FindByNameAsync(request.UserName);
-            if (user == null)
+            var isUserExist = await _unitOfWork.UserRepository.AnyAsync(x => x.UserName == request.UserName);
+            if (!isUserExist)
                 throw new TransactionException("User does not exist!");
+            
+            var user = await _unitOfWork.UserRepository.FirstOrDefaultAsync(x => x.UserName == request.UserName);
 
-            var result = await _userManager.CheckPasswordAsync(user, request.Password);
+            if (!StringHelper.Verify(request.Password, user.Password))
+                throw new TransactionException("Password Incorrect!");
 
-            if (result is false)
-                throw new TransactionException("Username or Password Incorrect!");
-
-            var roles = await _userManager.GetRolesAsync(user);
             var token = user.Authenticate(
-                roles,
                 _configuration.Jwt.Issuer,
                 _configuration.Jwt.Audience,
                 _configuration.Jwt.Key,
@@ -55,26 +50,24 @@ namespace Api.ApplicationLogic.Services
 
         public async Task<UserDTO> Register(RegisterRequest request)
         {
-            var findUserName = await _userManager.FindByNameAsync(request.UserName);
-            var findEmail = await _userManager.FindByEmailAsync(request.Email);
-
-            var isUserNameExists = findUserName != null;
-            if (isUserNameExists)
+            var isUserExist = await _unitOfWork.UserRepository.AnyAsync(x => x.UserName == request.UserName);
+            if (isUserExist)
                 throw new TransactionException("This Username Already Used!");
 
-            var isEmailExists = findEmail != null;
-            if (isEmailExists)
+            var isEmailExist = await _unitOfWork.UserRepository.AnyAsync(x => x.UserName == request.Email);
+            if (isEmailExist)
                 throw new TransactionException("This Email Already Used");
 
+
             var user = _mapper.Map<User>(request);
-            var result = await _userManager.CreateAsync(user, request.Password);
+            user.Password = user.Password.Hash();
+            await _unitOfWork.ExecuteTransactionAsync(async () =>
+            {
+                await _unitOfWork.UserRepository.AddAsync(user);
+            });
 
             var response = _mapper.Map<UserDTO>(user);
-
-            if (result.Succeeded)
-                return response;
-
-            throw new TransactionException(string.Join(' ', result.Errors.Select(error => error.Description)));
+            return response;
         }
     }
 }
