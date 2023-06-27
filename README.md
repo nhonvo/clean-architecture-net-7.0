@@ -187,4 +187,11 @@ application
   - Serilog.Sinks.Debug
   <!-- - Serilog.Sinks.Elasticsearch -->
 - retry
-  - RefreshMicrosoft.Extensions.Http.Polly
+  <!-- - RefreshMicrosoft.Extensions.Http.Polly -->
+
+- new relic
+  - NewRelic.Agent.Api
+
+```bash
+ docker run  -d  --name newrelic-infra  --network=host  --cap-add=SYS_PTRACE  --privileged  --pid=host  -v "/:/host:ro"  -v "/var/run/docker.sock:/var/run/docker.sock"  -e NRIA_LICENSE_KEY=778dff41e5681807a9a90379e46463ba6b9fNRAL newrelic/infrastructure:latest
+```

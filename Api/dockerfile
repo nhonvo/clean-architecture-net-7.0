@@ -9,6 +9,17 @@ ENV ASPNETCORE_URLS=http://+:5252
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
 
+
+#New Relic APM configuration variables
+
+ENV CORECLR_ENABLE_PROFILING=1
+
+ENV CORECLR_PROFILER={778dff41e5681807a9a90379e46463ba6b9fNRAL}
+
+ENV CORECLR_NEWRELIC_HOME=/Api/newrelic
+
+ENV CORECLR_PROFILER_PATH=/Api/newrelic/libNewRelicProfiler.so
+
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["Api/Api.csproj", "Api/"]
@@ -25,3 +36,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Api.dll"]
+
