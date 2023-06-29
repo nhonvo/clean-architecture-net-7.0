@@ -9,6 +9,8 @@ Project start day: Wednesday, 14/6/2023
 
 - Week 1: 14 - 16/6/2023 - 3 days - 5 points
 
+
+
 | id  | task                                                     | days | points | Process |
 | --- | -------------------------------------------------------- | ---- | ------ | ------- |
 | 1   | Clear requirements and all technologies needed.          | 1    | 1      | 100%    |
@@ -24,8 +26,10 @@ Project start day: Wednesday, 14/6/2023
      1. separate to read and write services.
      2. refactor code(remove unused using, move file to correct location)
   4. research docker and build sample project.
-
 - Week 2: 19 - 23/6/2023
+
+
+
 | id  | task                                                     | days | points | Process |
 | --- | -------------------------------------------------------- | ---- | ------ | ------- |
 | 1   | Enhance codebase Program.cs, set up docker               | 1    | 2      | 100%    |
@@ -62,8 +66,10 @@ Project start day: Wednesday, 14/6/2023
      3. CORS: set up 2 options allow and specific
      4. gZip: compress file responses
      5. validator
-
 - Week 2: 26 - 30/6/2023
+
+
+
 | id  | task                                     | days | points | Process |
 | --- | ---------------------------------------- | ---- | ------ | ------- |
 | 1   | jwt, test project                        |      |        |         |
