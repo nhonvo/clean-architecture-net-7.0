@@ -64,13 +64,13 @@ Project start day: Wednesday, 14/6/2023
      5. validator
 
 - Week 2: 26 - 30/6/2023
-| id  | task                                   | days | points | Process |
-| --- | -------------------------------------- | ---- | ------ | ------- |
-| 1   | jwt, retry, test project               |      |        |         |
-| 2   | remove libs,                           |      |        |         |
-| 3   | research new relic and minimal api     |      |        |         |
-| 4   | research redis and integrate new relic |      |        |         |
-| 5   |                                        |      |        |         |
+| id  | task                                     | days | points | Process |
+| --- | ---------------------------------------- | ---- | ------ | ------- |
+| 1   | jwt, test project                        |      |        |         |
+| 2   | remove libs,                             |      |        |         |
+| 3   | research new relic and minimal api       |      |        |         |
+| 4   | research redis and integrate new relic   |      |        |         |
+| 5   | Enhance new-relic, integrate redis cache |      |        |         |
 
   1. jwt, retry, test project, ec,
      1. jwt
@@ -78,12 +78,20 @@ Project start day: Wednesday, 14/6/2023
      3. test project use nUnit test
   2. remove libs
      1. cors, retry, identity
+  3. research new relic and minimal api
+  4. research redis and integrate new relic
+  5. Enhance new-relic
+     1. custom record event
+     2. transaction
+     3. write trace id in header
 
 - On Ready to go
   - Week 3:
     - enhance
       - validate for register, login request. Seeding data for user table
       - move authentication to middleware
+    - wire mock: test webapi
+    - conito - identity
     - add hangfire
     - add ci/cd
     - redis cache container
@@ -188,4 +196,5 @@ application
 
 - redis caching
 
-  -
+  - Microsoft.Extensions.Caching.StackExchangeRedis
+  - StackExchange.Redis
