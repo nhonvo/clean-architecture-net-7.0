@@ -159,11 +159,11 @@ application
   - AutoMapper.Extensions.Microsoft.DependencyInjection  
 
 - ORM
-  - Microsoft.EntityFrameworkCore.Design  
-  - Microsoft.EntityFrameworkCore.InMemory  
-  - Microsoft.EntityFrameworkCore.SqlServer  
-  - Microsoft.EntityFrameworkCore.Tools  
-  - Npgsql.EntityFrameworkCore.PostgreSQL
+  - dotnet add package Microsoft.EntityFrameworkCore.Design  
+  - dotnet add package Microsoft.EntityFrameworkCore.InMemory  
+  - dotnet add package Microsoft.EntityFrameworkCore.SqlServer  
+  - dotnet add package Microsoft.EntityFrameworkCore.Tools  
+  - dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
 
 - Authenticate & Author
   - Microsoft.AspNetCore.Authentication.JwtBearer  

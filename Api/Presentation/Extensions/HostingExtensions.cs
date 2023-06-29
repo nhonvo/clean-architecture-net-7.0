@@ -42,6 +42,8 @@ namespace Api.Presentation.Extensions
 
             app.UseMiddleware<PerformanceMiddleware>();
 
+            app.UseMiddleware<LoggingMiddleware>();
+
             app.UseResponseCompression();
 
             app.UseResponseCompression();

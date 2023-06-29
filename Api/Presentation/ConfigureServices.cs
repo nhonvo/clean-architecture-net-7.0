@@ -34,6 +34,7 @@ namespace Api.Presentation
             services.AddSingleton<GlobalExceptionMiddleware>();
             services.AddSingleton<PerformanceMiddleware>();
             services.AddSingleton<Stopwatch>();
+            services.AddSingleton<LoggingMiddleware>();
             services.AddHealthChecks();
 
             services.AddControllers(options =>
