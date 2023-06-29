@@ -64,32 +64,26 @@ Project start day: Wednesday, 14/6/2023
      5. validator
 
 - Week 2: 26 - 30/6/2023
-| id  | task                     | days | points | Process |
-| --- | ------------------------ | ---- | ------ | ------- |
-| 1   | jwt, retry, test project |      |        |         |
-| 1   | remove libs,             |      |        |         |
+| id  | task                                   | days | points | Process |
+| --- | -------------------------------------- | ---- | ------ | ------- |
+| 1   | jwt, retry, test project               |      |        |         |
+| 2   | remove libs,                           |      |        |         |
+| 3   | research new relic and minimal api     |      |        |         |
+| 4   | research redis and integrate new relic |      |        |         |
+| 5   |                                        |      |        |         |
 
-  1. jwt, retry, test project, ec, 
+  1. jwt, retry, test project, ec,
      1. jwt
      2. retry: install polly lib and add retry for http client
      3. test project use nUnit test
   2. remove libs
      1. cors, retry, identity
 
-
 - On Ready to go
   - Week 3:
-    - move file code to correct location
-      - service interface to application
-    - enhance auth
-      - validate for model
-      - optimize response
-      - code more methods like get list(),...
-    - message bus ****
-    - service test and unit tests ****
-    - add more app_settings to save environment variables
-      - move model to project specific
-    - research monitoring, new relic, .. ****
+    - enhance
+      - validate for register, login request. Seeding data for user table
+      - move authentication to middleware
     - add hangfire
     - add ci/cd
     - redis cache container
@@ -192,6 +186,6 @@ application
 - new relic
   - NewRelic.Agent.Api
 
-```bash
- docker run  -d  --name newrelic-infra  --network=host  --cap-add=SYS_PTRACE  --privileged  --pid=host  -v "/:/host:ro"  -v "/var/run/docker.sock:/var/run/docker.sock"  -e NRIA_LICENSE_KEY=778dff41e5681807a9a90379e46463ba6b9fNRAL newrelic/infrastructure:latest
-```
+- redis caching
+
+  -
