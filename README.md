@@ -91,15 +91,10 @@ Project start day: Wednesday, 14/6/2023
 
 - On Ready to go
   - Week 3:
-    - enhance
-      - validate for register, login request. Seeding data for user table
-      - move authentication to middleware
-      - catch log everywhere
     - wire mock: test webapi
     - conito - identity
     - add hangfire
     - add ci/cd
-    - redis cache container
     - proxy
       - ngnix
     - host to azure
@@ -153,15 +148,20 @@ application
 - redis
 - newrelics
 - serilog
+- healthcheck
 - Jwt
 - ef CORE
 - xUnit
-- Nginx
+
+---
+
 - Nlog/Splunk
 - wire mock
 - conito
 - Hangfire                  == separate demo
 - NetMQ/SignalR (optional)  == separate demo
+- proxy
+- Nginx
 
 ## Dependencies
 

@@ -18,6 +18,7 @@ namespace UnitTest
         protected readonly Mock<IUnitOfWork> _unitOfWorkMock;
         protected readonly Mock<IBookReadService> _bookReadServiceMock;
         protected readonly Mock<ICurrentTime> _currentTimeMock;
+        protected readonly Mock<ICacheService> _cacheServiceMock;
         protected readonly Mock<IBookRepository> _bookRepositoryMock;
         protected readonly ApplicationDbContext _dbContext;
         public SetupTest()
@@ -31,6 +32,7 @@ namespace UnitTest
             _unitOfWorkMock = new Mock<IUnitOfWork>();
             _bookReadServiceMock = new Mock<IBookReadService>();
             _currentTimeMock = new Mock<ICurrentTime>();
+            _cacheServiceMock = new Mock<ICacheService>();
             _bookRepositoryMock = new Mock<IBookRepository>();
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())

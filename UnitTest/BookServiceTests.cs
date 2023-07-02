@@ -12,7 +12,7 @@ namespace UnitTest
         private readonly IBookReadService _bookReadService;
         public BookServiceTests()
         {
-            _bookReadService = new BookReadService(_unitOfWorkMock.Object, _mapperConfig);
+            _bookReadService = new BookReadService(_unitOfWorkMock.Object, _mapperConfig, _cacheServiceMock.Object);
         }
         [Fact]
         public async Task GetBookPagingsionAsync_ShouldReturnCorrectDataWhenDidNotPassTheParameters()
