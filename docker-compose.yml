@@ -3,8 +3,6 @@ version: '3.4'
 networks:
   dev:
     driver: bridge
-  elastic:
-    driver: bridge
 
 services:
   api:
@@ -15,10 +13,12 @@ services:
     ports:
       - 5253:5252
     environment:
-      - ASPNETCORE_ENVIRONMENT=Developmenet
+      - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__Default=Server=postgres;Port=5432;Database=bookdb;User Id=postgres;Password=123;
     depends_on:
       - postgres
+      - redis
+      # - splunk
 
   postgres:
     image: postgres
@@ -31,6 +31,22 @@ services:
       - POSTGRES_DB=bookdb
     volumes:
       - ./pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis
+    container_name: NhonVTT-Template-redis
+    ports:
+      - 6379:6379
+    restart: always
+  # splunk:
+  #   image: splunk/splunk:latest
+  #   ports:
+  #     - 8000:8000
+  #     - 8088:8088
+  #   environment:
+  #     - SPLUNK_START_ARGS=--accept-license
+  #     - SPLUNK_PASSWORD=Password_Here
+
 
   # elasticsearch:
   #   image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0

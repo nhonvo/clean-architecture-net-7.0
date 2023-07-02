@@ -28,7 +28,7 @@ namespace Api.Presentation.Extensions
         {
             using var scope = app.Services.CreateScope();
             var initialize = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
-            await initialize.InitializeAsync();
+            // await initialize.InitializeAsync();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

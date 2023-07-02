@@ -68,8 +68,6 @@ Project start day: Wednesday, 14/6/2023
      5. validator
 - Week 2: 26 - 30/6/2023
 
-
-
 | id  | task                                     | days | points | Process |
 | --- | ---------------------------------------- | ---- | ------ | ------- |
 | 1   | jwt, test project                        |      |        |         |
@@ -96,6 +94,7 @@ Project start day: Wednesday, 14/6/2023
     - enhance
       - validate for register, login request. Seeding data for user table
       - move authentication to middleware
+      - catch log everywhere
     - wire mock: test webapi
     - conito - identity
     - add hangfire
@@ -151,10 +150,16 @@ application
 - net v7.0
 - postgresql
 - docker
-- Nlog/Splunk : fail
 - redis
 - newrelics
+- serilog
+- Jwt
+- ef CORE
+- xUnit
 - Nginx
+- Nlog/Splunk
+- wire mock
+- conito
 - Hangfire                  == separate demo
 - NetMQ/SignalR (optional)  == separate demo
 

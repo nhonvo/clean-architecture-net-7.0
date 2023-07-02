@@ -10,11 +10,12 @@ namespace Api.ApplicationLogic.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-
-        public BookWriteService(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly ICacheService _cacheService;
+        public BookWriteService(IUnitOfWork unitOfWork, IMapper mapper, ICacheService cacheService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _cacheService = cacheService;
         }
         public async Task<int> Add(BookDTO request)
         {
@@ -23,6 +24,7 @@ namespace Api.ApplicationLogic.Services
             {
                 await _unitOfWork.BookRepository.AddAsync(book);
             });
+            await _cacheService.Remove("all_books");
             return book.Id;
         }
         public async Task<BookDTO> Update(Book request)
@@ -34,6 +36,7 @@ namespace Api.ApplicationLogic.Services
                 _unitOfWork.BookRepository.Update(book);
             });
             var result = _mapper.Map<BookDTO>(book);
+            await _cacheService.Remove("all_books");
             return result;
         }
         public async Task<int> Delete(int id)
@@ -43,6 +46,7 @@ namespace Api.ApplicationLogic.Services
             {
                 _unitOfWork.BookRepository.Delete(book);
             });
+            await _cacheService.Remove("all_books");
             return book.Id;
         }
     }

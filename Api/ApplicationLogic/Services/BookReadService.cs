@@ -11,16 +11,32 @@ namespace Api.ApplicationLogic.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ICacheService _cacheService;
 
-        public BookReadService(IUnitOfWork unitOfWork, IMapper mapper)
+        public BookReadService(IUnitOfWork unitOfWork, IMapper mapper, ICacheService cacheService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _cacheService = cacheService;
         }
         public async Task<Pagination<Book>> Get(int pageIndex, int pageSize)
-            => await _unitOfWork.BookRepository.ToPagination(pageIndex, pageSize);
+        {
+            var cachedBooks = await _cacheService.Get<Pagination<Book>>("all_books");
+            if (cachedBooks != null)
+            {
+                return cachedBooks;
+            }
+
+            var expiryTime = DateTimeOffset.Now.AddSeconds(30);
+            var books = await _unitOfWork.BookRepository.ToPagination(pageIndex, pageSize);
+            await _cacheService.Set("all_books", books, expiryTime);
+
+            return books;
+        }
         public async Task<Book> Get(int id)
-            => await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id)
+        {
+            return await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id)
                 ?? throw new ArgumentNullException(BookConstants.NotFoundMessage);
+        }
     }
 }
