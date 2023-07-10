@@ -20,6 +20,10 @@ namespace Api.Presentation.Extensions
             builder.Services.AddApplicationService();
             builder.Services.AddWebAPIService(audience, issuer, key);
             // builder.AddSerilog();
+            builder.Host.UseSerilog((context, configuration) =>
+           {
+               configuration.ReadFrom.Configuration(context.Configuration);
+           });
 
             return builder.Build();
         }

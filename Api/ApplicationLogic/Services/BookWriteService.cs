@@ -1,4 +1,5 @@
 using Api.ApplicationLogic.Interface;
+using Api.Core;
 using Api.Core.Entities;
 using Api.Infrastructure;
 using AutoMapper;
@@ -11,11 +12,17 @@ namespace Api.ApplicationLogic.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ICacheService _cacheService;
-        public BookWriteService(IUnitOfWork unitOfWork, IMapper mapper, ICacheService cacheService)
+        private bool _redisOption;
+
+        public BookWriteService(IUnitOfWork unitOfWork,
+                                IMapper mapper,
+                                ICacheService cacheService,
+                                AppConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _cacheService = cacheService;
+            _redisOption = configuration.Options.Redis;
         }
         public async Task<int> Add(BookDTO request)
         {
@@ -24,7 +31,8 @@ namespace Api.ApplicationLogic.Services
             {
                 await _unitOfWork.BookRepository.AddAsync(book);
             });
-            await _cacheService.Remove("all_books");
+            if (_redisOption)
+                await _cacheService.Remove("all_books");
             return book.Id;
         }
         public async Task<BookDTO> Update(Book request)
@@ -36,7 +44,8 @@ namespace Api.ApplicationLogic.Services
                 _unitOfWork.BookRepository.Update(book);
             });
             var result = _mapper.Map<BookDTO>(book);
-            await _cacheService.Remove("all_books");
+            if (_redisOption)
+                await _cacheService.Remove("all_books");
             return result;
         }
         public async Task<int> Delete(int id)
@@ -46,7 +55,8 @@ namespace Api.ApplicationLogic.Services
             {
                 _unitOfWork.BookRepository.Delete(book);
             });
-            await _cacheService.Remove("all_books");
+            if (_redisOption)
+                await _cacheService.Remove("all_books");
             return book.Id;
         }
     }

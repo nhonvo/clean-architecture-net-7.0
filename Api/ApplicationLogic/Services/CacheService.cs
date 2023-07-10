@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Api.ApplicationLogic.Interface;
+using Api.Core;
 using StackExchange.Redis;
 
 namespace Api.ApplicationLogic.Services
@@ -7,9 +8,9 @@ namespace Api.ApplicationLogic.Services
     public class CacheService : ICacheService
     {
         IDatabase _cacheDb;
-        public CacheService()
+        public CacheService(AppConfiguration configuration)
         {
-            var redis = ConnectionMultiplexer.Connect("redis:6379");
+            var redis = ConnectionMultiplexer.Connect(configuration.ConnectionStrings.RedisConnectionDocker);
             _cacheDb = redis.GetDatabase();
         }
 

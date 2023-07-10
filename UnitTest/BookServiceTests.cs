@@ -4,15 +4,17 @@ using Api.Core.Entities;
 using Api.ApplicationLogic.Interface;
 using AutoFixture;
 using Api.Core.Commons;
+using Api.Core;
 
 namespace UnitTest
 {
     public class BookServiceTests : SetupTest
     {
         private readonly IBookReadService _bookReadService;
+        private readonly AppConfiguration _configuration = new AppConfiguration();
         public BookServiceTests()
         {
-            _bookReadService = new BookReadService(_unitOfWorkMock.Object, _mapperConfig, _cacheServiceMock.Object);
+            _bookReadService = new BookReadService(_unitOfWorkMock.Object, _mapperConfig, _cacheServiceMock.Object, _configuration);
         }
         [Fact]
         public async Task GetBookPagingsionAsync_ShouldReturnCorrectDataWhenDidNotPassTheParameters()
@@ -28,7 +30,7 @@ namespace UnitTest
             var expectedResult = _mapperConfig.Map<Pagination<Book>>(mockData);
             _unitOfWorkMock.Setup(x => x.BookRepository.ToPagination(0, 100)).ReturnsAsync(mockData);
             //act
-            var result = await _bookReadService.Get(0,100);
+            var result = await _bookReadService.Get(0, 100);
             //assert
             _unitOfWorkMock.Verify(x => x.BookRepository.ToPagination(0, 100), Times.Once());
         }

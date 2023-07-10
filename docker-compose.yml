@@ -14,7 +14,6 @@ services:
       - 5253:5252
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__Default=Server=postgres;Port=5432;Database=bookdb;User Id=postgres;Password=123;
     depends_on:
       - postgres
       - redis

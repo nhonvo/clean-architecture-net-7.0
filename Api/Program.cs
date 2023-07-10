@@ -8,15 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 var _configuration = builder.Configuration.Get<AppConfiguration>()
                     ?? throw new ArgumentNullException(ErrorMessageConstants.AppConfigurationMessage);
 
-string databaseConnection = _configuration.ConnectionStrings.DatabaseConnectionDocker;
+string databaseConnection = _configuration.ConnectionStrings.DatabaseConnection;
 string audience = _configuration.Jwt.Audience;
 string issuer = _configuration.Jwt.Issuer;
 string key = _configuration.Jwt.Key;
 
-builder.Host.UseSerilog((context, configuration) =>
-           {
-               configuration.ReadFrom.Configuration(context.Configuration);
-           });
+
 builder.Services.AddSingleton(_configuration);
 var app = await builder.ConfigureServices(databaseConnection, audience, issuer, key)
                         .ConfigurePipelineAsync();

@@ -1,9 +1,11 @@
 using Api.ApplicationLogic.Interface;
+using Api.Core;
 using Api.Core.Commons;
 using Api.Core.Entities;
 using Api.Infrastructure;
 using Api.Presentation.Constants;
 using AutoMapper;
+using Serilog;
 
 namespace Api.ApplicationLogic.Services
 {
@@ -12,15 +14,26 @@ namespace Api.ApplicationLogic.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ICacheService _cacheService;
+        private bool _redisOption;
 
-        public BookReadService(IUnitOfWork unitOfWork, IMapper mapper, ICacheService cacheService)
+        public BookReadService(IUnitOfWork unitOfWork,
+                               IMapper mapper,
+                               ICacheService cacheService,
+                               AppConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _cacheService = cacheService;
+            _redisOption = configuration.Options.Redis;
         }
         public async Task<Pagination<Book>> Get(int pageIndex, int pageSize)
         {
+            Log.Information("Getting Pagination for " + pageIndex + " " + pageSize + " pages ");
+            if (!_redisOption)
+            {
+                return await _unitOfWork.BookRepository.ToPagination(pageIndex, pageSize);
+            }
+
             var cachedBooks = await _cacheService.Get<Pagination<Book>>("all_books");
             if (cachedBooks != null)
             {
