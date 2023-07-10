@@ -1,18 +1,23 @@
 using Api.Core;
 using Api.Presentation.Constants;
 using Api.Presentation.Extensions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var configuration = builder.Configuration.Get<AppConfiguration>()
+var _configuration = builder.Configuration.Get<AppConfiguration>()
                     ?? throw new ArgumentNullException(ErrorMessageConstants.AppConfigurationMessage);
 
-string databaseConnection = configuration.ConnectionStrings.DatabaseConnectionDocker;
-string audience = configuration.Jwt.Audience;
-string issuer = configuration.Jwt.Issuer;
-string key = configuration.Jwt.Key;
+string databaseConnection = _configuration.ConnectionStrings.DatabaseConnectionDocker;
+string audience = _configuration.Jwt.Audience;
+string issuer = _configuration.Jwt.Issuer;
+string key = _configuration.Jwt.Key;
 
-builder.Services.AddSingleton(configuration);
+builder.Host.UseSerilog((context, configuration) =>
+           {
+               configuration.ReadFrom.Configuration(context.Configuration);
+           });
+builder.Services.AddSingleton(_configuration);
 var app = await builder.ConfigureServices(databaseConnection, audience, issuer, key)
                         .ConfigurePipelineAsync();
 

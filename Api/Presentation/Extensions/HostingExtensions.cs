@@ -19,7 +19,7 @@ namespace Api.Presentation.Extensions
             builder.Services.AddInfrastructuresService(databaseConnection);
             builder.Services.AddApplicationService();
             builder.Services.AddWebAPIService(audience, issuer, key);
-            builder.AddSerilog();
+            // builder.AddSerilog();
 
             return builder.Build();
         }
@@ -28,7 +28,7 @@ namespace Api.Presentation.Extensions
         {
             using var scope = app.Services.CreateScope();
             var initialize = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
-            // await initialize.InitializeAsync();
+            await initialize.InitializeAsync();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -57,6 +57,9 @@ namespace Api.Presentation.Extensions
             app.UseAuthorization();
 
             app.MapControllers();
+
+            app.UseSerilogRequestLogging();
+
             return app;
         }
     }

@@ -9,23 +9,24 @@ namespace Api.Infrastructure.Extensions
     {
         public static void AddSerilog(this WebApplicationBuilder builder)
         {
-            Log.Logger = new LoggerConfiguration()
-                        .MinimumLevel.Information()
-                        .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
-                        .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
-                        .Enrich.FromLogContext()
-                        .WriteTo.Console(outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {CorrelationId} {SourceContext} {Level:u3}] {Message:lj}{NewLine}{Exception}{NewLine}",
-                                        restrictedToMinimumLevel: LogEventLevel.Information,
-                                        formatProvider: CultureInfo.InvariantCulture,
-                                        standardErrorFromLevel: LogEventLevel.Error,
-                                        theme: AnsiConsoleTheme.Literate)
-                        .WriteTo.File(
-                            "../../../Loggings/logs.log",
-                            rollingInterval: RollingInterval.Day,
-                            outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {CorrelationId} {SourceContext} {Level:u3}] {Message:lj}{NewLine}{Exception}{NewLine}")
-                        .CreateLogger();
+            // Log.Logger = new LoggerConfiguration()
+            //             .MinimumLevel.Information()
+            //             .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+            //             .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
+            //             .Enrich.FromLogContext()
+            //             .WriteTo.Console(outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {CorrelationId} {SourceContext} {Level:u3}] {Message:lj}{NewLine}{Exception}{NewLine}",
+            //                             restrictedToMinimumLevel: LogEventLevel.Information,
+            //                             formatProvider: CultureInfo.InvariantCulture,
+            //                             standardErrorFromLevel: LogEventLevel.Error,
+            //                             theme: AnsiConsoleTheme.Literate)
+            //             .WriteTo.File(
+            //                 "D:\\Project\\ojt-project\\NhonOJT-Template\\Loggings\\logs.txt",
+            //                 rollingInterval: RollingInterval.Day,
+            //                 outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {CorrelationId} {SourceContext} {Level:u3}] {Message:lj}{NewLine}{Exception}{NewLine}")
+            //             .CreateLogger();
 
-            builder.Host.UseSerilog(Log.Logger);
+            // builder.Host.UseSerilog(Log.Logger);
+           
         }
     }
 }
