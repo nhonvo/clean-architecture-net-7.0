@@ -16,14 +16,14 @@ namespace Api.Presentation.Extensions
             string issuer,
             string key)
         {
-            builder.Services.AddInfrastructuresService(databaseConnection);
-            builder.Services.AddApplicationService();
-            builder.Services.AddWebAPIService(audience, issuer, key);
-            // builder.AddSerilog();
             builder.Host.UseSerilog((context, configuration) =>
            {
                configuration.ReadFrom.Configuration(context.Configuration);
            });
+            builder.Services.AddInfrastructuresService(databaseConnection);
+            builder.Services.AddApplicationService();
+            builder.Services.AddWebAPIService(audience, issuer, key);
+
 
             return builder.Build();
         }

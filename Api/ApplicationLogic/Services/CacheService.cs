@@ -3,6 +3,8 @@ using Api.ApplicationLogic.Interface;
 using Api.Core;
 using StackExchange.Redis;
 
+#nullable disable
+
 namespace Api.ApplicationLogic.Services
 {
     public class CacheService : ICacheService
@@ -10,8 +12,11 @@ namespace Api.ApplicationLogic.Services
         IDatabase _cacheDb;
         public CacheService(AppConfiguration configuration)
         {
-            var redis = ConnectionMultiplexer.Connect(configuration.ConnectionStrings.RedisConnectionDocker);
-            _cacheDb = redis.GetDatabase();
+            if (configuration.Options.Redis)
+            {
+                var redis = ConnectionMultiplexer.Connect(configuration.ConnectionStrings.RedisConnectionDocker);
+                _cacheDb = redis.GetDatabase();
+            }
         }
 
         public async Task<T> Get<T>(string key)

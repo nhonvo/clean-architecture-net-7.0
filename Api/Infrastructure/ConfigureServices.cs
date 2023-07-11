@@ -2,6 +2,8 @@ using Api.ApplicationLogic.Repositories;
 using Api.Infrastructure.Interface;
 using Api.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+
 namespace Api.Infrastructure
 {
     public static class ConfigureServices

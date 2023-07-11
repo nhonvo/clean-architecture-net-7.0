@@ -14,6 +14,7 @@ namespace Api.ApplicationLogic.Services
         {
             _unitOfWork = unitOfWork;
         }
+
         public async Task Seed()
         {
             if (!await _unitOfWork.BookRepository.AnyAsync())
@@ -25,6 +26,7 @@ namespace Api.ApplicationLogic.Services
                     _unitOfWork.BookRepository.AddRangeAsync(books);
                 });
             };
+            
             if (!await _unitOfWork.UserRepository.AnyAsync())
             {
                 string json = File.ReadAllText(LinkConstants.UserData);
