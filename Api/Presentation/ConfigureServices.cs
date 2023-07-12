@@ -1,3 +1,4 @@
+using Api.Core;
 using Api.Core.Entities;
 using Api.Infrastructure.Persistence;
 using Api.Presentation.Filters;
@@ -21,10 +22,11 @@ namespace Api.Presentation
     {
         public static IServiceCollection AddWebAPIService(
             this IServiceCollection services,
-            string audience,
-            string issuer,
-            string key)
+            AppConfiguration configuration)
         {
+            string audience = configuration.Jwt.Audience;
+            string issuer = configuration.Jwt.Issuer;
+            string key = configuration.Jwt.Key;
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddFluentValidationAutoValidation();

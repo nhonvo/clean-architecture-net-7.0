@@ -1,4 +1,5 @@
 using Api.ApplicationLogic;
+using Api.Core;
 using Api.Infrastructure;
 using Api.Infrastructure.Extensions;
 using Api.Infrastructure.Persistence;
@@ -11,28 +12,28 @@ namespace Api.Presentation.Extensions
     {
         public static WebApplication ConfigureServices(
             this WebApplicationBuilder builder,
-            string databaseConnection,
-            string audience,
-            string issuer,
-            string key)
+            AppConfiguration configuration)
         {
-            builder.Host.UseSerilog((context, configuration) =>
+            builder.Host.UseSerilog((context, config) =>
            {
-               configuration.ReadFrom.Configuration(context.Configuration);
+               config.ReadFrom.Configuration(context.Configuration);
            });
-            builder.Services.AddInfrastructuresService(databaseConnection);
+            builder.Services.AddInfrastructuresService(configuration);
             builder.Services.AddApplicationService();
-            builder.Services.AddWebAPIService(audience, issuer, key);
+            builder.Services.AddWebAPIService(configuration);
 
 
             return builder.Build();
         }
 
-        public static async Task<WebApplication> ConfigurePipelineAsync(this WebApplication app)
+        public static async Task<WebApplication> ConfigurePipelineAsync(this WebApplication app, AppConfiguration configuration)
         {
             using var scope = app.Services.CreateScope();
-            var initialize = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
-            await initialize.InitializeAsync();
+            if (!configuration.UseInMemoryDatabase)
+            {
+                var initialize = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
+                await initialize.InitializeAsync();
+            }
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

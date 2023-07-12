@@ -1,4 +1,5 @@
 using Api.ApplicationLogic.Repositories;
+using Api.Core;
 using Api.Infrastructure.Interface;
 using Api.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +11,21 @@ namespace Api.Infrastructure
     {
         public static IServiceCollection AddInfrastructuresService(
             this IServiceCollection services,
-            string databaseConnection)
+            AppConfiguration configuration)
         {
-            // Add services to the container.
-            services.AddDbContext<ApplicationDbContext>(o =>
-                o.UseNpgsql(databaseConnection)
+            string databaseConnection = configuration.ConnectionStrings.DatabaseConnection;
+            bool UseInMemoryDatabase = configuration.UseInMemoryDatabase;
+            if (UseInMemoryDatabase)
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseInMemoryDatabase("Template"));
+            }
+            else
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseNpgsql(databaseConnection)
             );
+            }
             services.AddScoped<ApplicationDbContextInitializer>();
 
             // register services
