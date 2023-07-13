@@ -1,7 +1,6 @@
 using Api.Core;
 using Api.Presentation.Constants;
 using Api.Presentation.Extensions;
-using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 

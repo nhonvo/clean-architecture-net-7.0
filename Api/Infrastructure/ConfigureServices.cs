@@ -13,7 +13,7 @@ namespace Api.Infrastructure
             this IServiceCollection services,
             AppConfiguration configuration)
         {
-            string databaseConnection = configuration.ConnectionStrings.DatabaseConnectionDocker;
+            string databaseConnection = configuration.ConnectionStrings.DatabaseConnection;
             bool UseInMemoryDatabase = configuration.UseInMemoryDatabase;
             if (UseInMemoryDatabase)
             {

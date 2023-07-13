@@ -1,4 +1,5 @@
 
+using Api.Infrastructure.Extensions;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -52,6 +53,7 @@ namespace Api.Presentation.Filters
             // Log the exception details
             Trace.TraceError($"An invalid operation exception occurred: {exception.Message}");
             Log.Error($"An invalid operation exception occurred: {exception.Message}");
+            NewRelicExtension.ErrorCustomMonitor("System", $"An invalid operation exception occurred: {exception.Message}");
 
             var details = new ProblemDetails
             {
@@ -105,6 +107,7 @@ namespace Api.Presentation.Filters
         {
             var exception = (ArgumentNullException)context.Exception;
             Log.Error($"An Not Found exception occurred: {exception.Message}");
+            NewRelicExtension.ErrorCustomMonitor("System", $"An Not Found exception occurred: {exception.Message}");
             var details = new ProblemDetails()
             {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
@@ -118,7 +121,10 @@ namespace Api.Presentation.Filters
         }
         private void HandleUnauthorizedAccessException(ExceptionContext context)
         {
+            var exception = (ArgumentNullException)context.Exception;
             Log.Error($"An Unauthorized Access exception occurred: {context.Exception.Message}");
+            NewRelicExtension.ErrorCustomMonitor("System", $"An Unauthorized Access exception occurred: {exception.Message}");
+
             var details = new ProblemDetails
             {
                 Status = StatusCodes.Status401Unauthorized,
@@ -135,11 +141,16 @@ namespace Api.Presentation.Filters
         }
         private void HandleTransactionException(ExceptionContext context)
         {
+            var exception = (ArgumentNullException)context.Exception;
+            Log.Error($"Something went wrong in this transaction: {context.Exception.Message}");
+            NewRelicExtension.ErrorCustomMonitor("System", $"Something went wrong in this transaction: {exception.Message}");
+
             var details = new ProblemDetails
             {
                 Status = StatusCodes.Status400BadRequest,
                 Title = "Bad Request",
                 Detail = context.Exception.Message,
+                Type = "https://tools.ietf.org/html/rfc7235#section-3.1"
             };
 
             context.Result = new ObjectResult(details)

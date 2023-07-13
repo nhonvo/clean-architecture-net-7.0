@@ -12,7 +12,7 @@ namespace Api.ApplicationLogic.Services
         IDatabase _cacheDb;
         public CacheService(AppConfiguration configuration)
         {
-            if (configuration.Options.Redis)
+            if (configuration.UseRedisCache)
             {
                 var redis = ConnectionMultiplexer.Connect(configuration.ConnectionStrings.RedisConnectionDocker);
                 _cacheDb = redis.GetDatabase();

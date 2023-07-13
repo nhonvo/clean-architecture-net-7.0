@@ -5,14 +5,9 @@ namespace Api.Core
     public class AppConfiguration
     {
         public bool UseInMemoryDatabase { get; set; }
+        public bool UseRedisCache { get; set; }
         public ConnectionStrings ConnectionStrings { get; set; }
         public Jwt Jwt { get; set; }
-        public Options Options { get; set; }
-    }
-
-    public class Options
-    {
-        public bool Redis { get; set; }
     }
     public class ConnectionStrings
     {
