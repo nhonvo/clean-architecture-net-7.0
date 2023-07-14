@@ -22,7 +22,7 @@ namespace Api.ApplicationLogic.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _cacheService = cacheService;
-            _redisOption = configuration.Options.Redis;
+            _redisOption = configuration.UseRedisCache;
         }
         public async Task<int> Add(BookDTO request)
         {

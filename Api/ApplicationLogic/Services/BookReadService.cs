@@ -3,6 +3,7 @@ using Api.Core;
 using Api.Core.Commons;
 using Api.Core.Entities;
 using Api.Infrastructure;
+using Api.Infrastructure.Extensions;
 using Api.Presentation.Constants;
 using AutoMapper;
 using Serilog;
@@ -24,7 +25,7 @@ namespace Api.ApplicationLogic.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _cacheService = cacheService;
-            _redisOption = configuration.Options.Redis;
+            _redisOption = configuration.UseRedisCache;
         }
         public async Task<Pagination<Book>> Get(int pageIndex, int pageSize)
         {
@@ -48,8 +49,13 @@ namespace Api.ApplicationLogic.Services
         }
         public async Task<Book> Get(int id)
         {
-            return await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id)
-                ?? throw new ArgumentNullException(BookConstants.NotFoundMessage);
+            var result = await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id);
+            NewRelicExtension.ErrorCustomMonitor("Book", BookConstants.NotFoundMessage);
+            if (result == null)
+            {
+                throw new ArgumentNullException(BookConstants.NotFoundMessage);
+            }
+            return result;
         }
     }
 }

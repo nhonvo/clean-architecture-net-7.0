@@ -16,18 +16,14 @@ namespace Api.Presentation.Middlewares
         {
             _stopwatch.Restart();
             _stopwatch.Start();
-            Log.Information("Start performance record");
             Console.WriteLine("Start performance record");
-
             await next(context);
-
-            Log.Information("End performance record");
             Console.WriteLine("End performance record");
             _stopwatch.Stop();
-
             TimeSpan timeTaken = _stopwatch.Elapsed;
-            Log.Information("Time taken: " + timeTaken.ToString(@"m\:ss\.fff"));
-            Console.WriteLine("Time taken: " + timeTaken.ToString(@"m\:ss\.fff"));
+
+            Log.Information("Start performance record \n Time taken: " + timeTaken.ToString(@"m\:ss\.fff") + "\n End performance record");
+            Console.WriteLine("Start performance record \n Time taken: " + timeTaken.ToString(@"m\:ss\.fff") + "\n End performance record");
 
         }
     }

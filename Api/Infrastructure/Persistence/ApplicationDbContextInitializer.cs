@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace Api.Infrastructure.Persistence
 {

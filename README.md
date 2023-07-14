@@ -63,16 +63,9 @@ application
 - Jwt
 - ef CORE
 - xUnit
-
 - wire mock
-- Nlog/Splunk || elk
-- Hangfire                  == separate demo
+- Nlog/Splunk 
 
----
-
-- conito
-- NetMQ/SignalR (optional)  == separate demo
-- proxy/Nginx
 
 ## Dependencies
 
