@@ -17,7 +17,7 @@ namespace UnitTest
             _bookReadService = new BookReadService(_unitOfWorkMock.Object, _mapperConfig, _cacheServiceMock.Object, _configuration);
         }
         [Fact]
-        public async Task GetBookPagingsionAsync_ShouldReturnCorrectDataWhenDidNotPassTheParameters()
+        public async Task GetBookPaginationAsync_ShouldReturnCorrectDataWhenDidNotPassTheParameters()
         {
             //arrange
             var mockData = new Pagination<Book>

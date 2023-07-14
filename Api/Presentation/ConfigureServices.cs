@@ -102,9 +102,9 @@ namespace Api.Presentation
             // });
 
             // http client
-            services.AddHttpClient("name_client", options =>
+            services.AddHttpClient("Azure_Translate", options =>
             {
-                options.BaseAddress = new Uri("http://localhost:5256");
+                options.BaseAddress = new Uri(configuration.AzureTranslate.Endpoint);
             });
             // .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(new[]{
             //     TimeSpan.FromSeconds(1),

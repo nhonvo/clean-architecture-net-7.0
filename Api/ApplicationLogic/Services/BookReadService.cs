@@ -50,9 +50,9 @@ namespace Api.ApplicationLogic.Services
         public async Task<Book> Get(int id)
         {
             var result = await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id);
-            NewRelicExtension.ErrorCustomMonitor("Book", BookConstants.NotFoundMessage);
             if (result == null)
             {
+            NewRelicExtension.ErrorCustomMonitor("Book", BookConstants.NotFoundMessage);
                 throw new ArgumentNullException(BookConstants.NotFoundMessage);
             }
             return result;

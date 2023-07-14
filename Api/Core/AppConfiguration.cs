@@ -8,7 +8,17 @@ namespace Api.Core
         public bool UseRedisCache { get; set; }
         public bool UseDocker { get; set; }
         public ConnectionStrings ConnectionStrings { get; set; }
+        public AzureTranslate AzureTranslate { get; set; }
         public Jwt Jwt { get; set; }
+    }
+    public class AzureTranslate
+    {
+        public string Key { get; set; }
+        public string Endpoint { get; set; }
+        public string Location { get; set; }
+        public string DefaultLanguage { get; set; }
+        public string TranslateLanguage { get; set; }
+        public string Route { get; set; }
     }
     public class ConnectionStrings
     {
