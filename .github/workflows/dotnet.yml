@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 7.0 
     - name: Restore dependencies
-      run: dotnet restore "D:\Project\ojt-project\NhonOJT-Template\Application.sln"
+      run: dotnet restore "../../Application.sln"
     - name: Build
       run: dotnet build --no-restore
     - name: Test
