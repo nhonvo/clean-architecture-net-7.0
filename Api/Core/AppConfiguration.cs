@@ -6,6 +6,7 @@ namespace Api.Core
     {
         public bool UseInMemoryDatabase { get; set; }
         public bool UseRedisCache { get; set; }
+        public bool UseDocker { get; set; }
         public ConnectionStrings ConnectionStrings { get; set; }
         public Jwt Jwt { get; set; }
     }

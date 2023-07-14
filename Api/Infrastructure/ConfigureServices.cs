@@ -14,17 +14,25 @@ namespace Api.Infrastructure
             AppConfiguration configuration)
         {
             string databaseConnection = configuration.ConnectionStrings.DatabaseConnection;
+            string DatabaseConnectionDocker = configuration.ConnectionStrings.DatabaseConnectionDocker;
+            
             bool UseInMemoryDatabase = configuration.UseInMemoryDatabase;
+            bool UseDocker = configuration.UseDocker;
+
             if (UseInMemoryDatabase)
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseInMemoryDatabase("Template"));
             }
+            else if (UseDocker)
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseNpgsql(DatabaseConnectionDocker));
+            }
             else
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(databaseConnection)
-            );
+                    options.UseNpgsql(databaseConnection));
             }
             services.AddScoped<ApplicationDbContextInitializer>();
 
