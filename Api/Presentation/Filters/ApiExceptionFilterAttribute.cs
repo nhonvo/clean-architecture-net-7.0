@@ -105,7 +105,7 @@ namespace Api.Presentation.Filters
         }
         private void HandleNotFoundException(ExceptionContext context)
         {
-            var exception = (ArgumentNullException)context.Exception;
+            var exception = context.Exception;
             Log.Error($"An Not Found exception occurred: {exception.Message}");
             NewRelicExtension.ErrorCustomMonitor("System", $"An Not Found exception occurred: {exception.Message}");
             var details = new ProblemDetails()
@@ -121,7 +121,7 @@ namespace Api.Presentation.Filters
         }
         private void HandleUnauthorizedAccessException(ExceptionContext context)
         {
-            var exception = (ArgumentNullException)context.Exception;
+            var exception = (UnauthorizedAccessException)context.Exception;
             Log.Error($"An Unauthorized Access exception occurred: {context.Exception.Message}");
             NewRelicExtension.ErrorCustomMonitor("System", $"An Unauthorized Access exception occurred: {exception.Message}");
 
@@ -141,7 +141,7 @@ namespace Api.Presentation.Filters
         }
         private void HandleTransactionException(ExceptionContext context)
         {
-            var exception = (ArgumentNullException)context.Exception;
+            var exception = (TransactionException)context.Exception;
             Log.Error($"Something went wrong in this transaction: {context.Exception.Message}");
             NewRelicExtension.ErrorCustomMonitor("System", $"Something went wrong in this transaction: {exception.Message}");
 

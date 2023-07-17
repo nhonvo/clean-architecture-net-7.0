@@ -19,8 +19,8 @@ namespace Api.Infrastructure.Persistence
             }
             catch (Exception)
             {
+                Log.Error("Migration error");
                 throw;
-                // Log.Error(ex, "Migration error");
             }
         }
     }

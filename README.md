@@ -64,7 +64,7 @@ application
 - ef CORE
 - xUnit
 - wire mock
-- Nlog/Splunk 
+- Nlog/Splunk
 
 
 ## Dependencies
