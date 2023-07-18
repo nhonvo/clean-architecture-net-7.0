@@ -43,7 +43,7 @@ namespace Api.Infrastructure
         {
             if (_transaction == null)
             {
-                throw new Exception("No transaction to commit");
+                throw new TransactionException("No transaction to commit");
             }
             try
             {
@@ -61,7 +61,7 @@ namespace Api.Infrastructure
         {
             if (_transaction == null)
             {
-                throw new Exception("No transaction to commit");
+                throw new TransactionException("No transaction to commit");
             }
 
             try
@@ -81,7 +81,7 @@ namespace Api.Infrastructure
         {
             if (_transaction == null)
             {
-                throw new Exception("No transaction to commit");
+                throw new TransactionException("No transaction to commit");
             }
 
             _transaction.Rollback();
@@ -93,7 +93,7 @@ namespace Api.Infrastructure
         {
             if (_transaction == null)
             {
-                throw new Exception("No transaction to commit");
+                throw new TransactionException("No transaction to commit");
             }
 
             await _transaction.RollbackAsync();

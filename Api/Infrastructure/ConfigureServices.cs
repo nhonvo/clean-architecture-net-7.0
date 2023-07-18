@@ -15,7 +15,7 @@ namespace Api.Infrastructure
         {
             string databaseConnection = configuration.ConnectionStrings.DatabaseConnection;
             string DatabaseConnectionDocker = configuration.ConnectionStrings.DatabaseConnectionDocker;
-            
+
             bool UseInMemoryDatabase = configuration.UseInMemoryDatabase;
             bool UseDocker = configuration.UseDocker;
 
@@ -26,6 +26,7 @@ namespace Api.Infrastructure
             }
             else if (UseDocker)
             {
+                System.Console.WriteLine("here!!!+ " + DatabaseConnectionDocker);
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(DatabaseConnectionDocker));
             }

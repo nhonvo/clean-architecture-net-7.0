@@ -8,6 +8,12 @@
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Infrastructure\IService\**" />
+    <Content Remove="Infrastructure\IService\**" />
+    <EmbeddedResource Remove="Infrastructure\IService\**" />
+    <None Remove="Infrastructure\IService\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="FluentValidation" Version="11.5.2" />
@@ -36,9 +42,6 @@
     <PackageReference Include="Serilog.Sinks.Splunk" Version="3.7.0" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.116" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\IService\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />

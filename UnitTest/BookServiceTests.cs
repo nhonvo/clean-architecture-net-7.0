@@ -14,7 +14,7 @@ namespace UnitTest
         private readonly AppConfiguration _configuration = new AppConfiguration();
         public BookServiceTests()
         {
-            _bookReadService = new BookReadService(_unitOfWorkMock.Object, _mapperConfig, _cacheServiceMock.Object, _configuration);
+            _bookReadService = new BookReadService(_unitOfWorkMock.Object, _cacheServiceMock.Object, _configuration);
         }
         [Fact]
         public async Task GetBookPaginationAsync_ShouldReturnCorrectDataWhenDidNotPassTheParameters()

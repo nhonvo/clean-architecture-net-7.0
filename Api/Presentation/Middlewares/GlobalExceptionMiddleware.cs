@@ -15,7 +15,7 @@ namespace Api.Presentation.Middlewares
                 Console.WriteLine("GlobalExceptionMiddleware");
                 Console.WriteLine(ex.Message);
 
-                Log.Information("Start performance record");
+                Log.Information("GlobalExceptionMiddleware");
                 Log.Error(ex.Message);
                 await context.Response.WriteAsync(ex.ToString());
             }

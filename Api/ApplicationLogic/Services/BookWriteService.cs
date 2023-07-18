@@ -1,9 +1,12 @@
+using System.Text.Json;
 using Api.ApplicationLogic.Interface;
 using Api.Core;
 using Api.Core.Entities;
 using Api.Infrastructure;
 using AutoMapper;
+using MessagePack;
 using Models.Book;
+using Serilog;
 
 namespace Api.ApplicationLogic.Services
 {
@@ -26,17 +29,22 @@ namespace Api.ApplicationLogic.Services
         }
         public async Task<int> Add(BookDTO request)
         {
+            Log.Information("Request: " + JsonSerializer.Serialize(request));
+
             var book = _mapper.Map<Book>(request);
             await _unitOfWork.ExecuteTransactionAsync(async () =>
             {
                 await _unitOfWork.BookRepository.AddAsync(book);
             });
             if (_redisOption)
-                await _cacheService.Remove("all_books");
+                await _cacheService.Remove("book_" + book.Id);
+            Log.Information("Response: " + JsonSerializer.Serialize(book.Id));
+
             return book.Id;
         }
         public async Task<BookDTO> Update(Book request)
         {
+            Log.Information("Request: " + JsonSerializer.Serialize(request));
             var book = await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == request.Id);
             book = _mapper.Map<Book>(request);
             await _unitOfWork.ExecuteTransactionAsync(() =>
@@ -45,18 +53,24 @@ namespace Api.ApplicationLogic.Services
             });
             var result = _mapper.Map<BookDTO>(book);
             if (_redisOption)
-                await _cacheService.Remove("all_books");
+                await _cacheService.Remove("book_" + book.Id);
+            Log.Information("Response: " + JsonSerializer.Serialize(book.Id));
+
             return result;
         }
         public async Task<int> Delete(int id)
         {
+            Log.Information("Request: " + JsonSerializer.Serialize(id));
+
             var book = await _unitOfWork.BookRepository.FirstOrDefaultAsync(x => x.Id == id);
             await _unitOfWork.ExecuteTransactionAsync(() =>
             {
                 _unitOfWork.BookRepository.Delete(book);
             });
             if (_redisOption)
-                await _cacheService.Remove("all_books");
+                await _cacheService.Remove("book_" + book.Id);
+            Log.Information("Response: " + JsonSerializer.Serialize(book.Id));
+
             return book.Id;
         }
     }

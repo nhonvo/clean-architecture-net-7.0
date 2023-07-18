@@ -25,5 +25,14 @@ namespace Api.Infrastructure.Extensions
             };
             NewRelic.Api.Agent.NewRelic.RecordCustomEvent("NewRelicErrorMonitor", attributes);
         }
+        public static void BookErrorMonitor(string name, string message)
+        {
+            var attributes = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("Error Name", name),
+                new KeyValuePair<string, object>("Error Book Message", message)
+            };
+            NewRelic.Api.Agent.NewRelic.RecordCustomEvent("NewRelicBookErrorMonitor", attributes);
+        }
     }
 }

@@ -3,8 +3,11 @@ using Api.Core;
 using Api.Core.Entities;
 using Api.Core.Utilities;
 using Api.Infrastructure;
+using Api.Infrastructure.Extensions;
 using AutoMapper;
 using Models.User;
+using Serilog;
+using System.Text.Json;
 using System.Transactions;
 
 namespace Api.ApplicationLogic.Services
@@ -28,14 +31,22 @@ namespace Api.ApplicationLogic.Services
         }
         public async Task<UserDTO> Authenticate(LoginRequest request)
         {
+            Log.Information("Request: " + JsonSerializer.Serialize(request));
+
             var isUserExist = await _unitOfWork.UserRepository.AnyAsync(x => x.UserName == request.UserName);
             if (!isUserExist)
+            {
+                NewRelicExtension.ErrorCustomMonitor("User", "User does not exist!");
                 throw new TransactionException("User does not exist!");
-            
+            }
+
             var user = await _unitOfWork.UserRepository.FirstOrDefaultAsync(x => x.UserName == request.UserName);
 
             if (!StringHelper.Verify(request.Password, user.Password))
+            {
+                NewRelicExtension.ErrorCustomMonitor("User", "User does not exist!");
                 throw new TransactionException("Password Incorrect!");
+            }
 
             var token = user.Authenticate(
                 _configuration.Jwt.Issuer,
@@ -45,11 +56,15 @@ namespace Api.ApplicationLogic.Services
             var response = _mapper.Map<UserDTO>(user);
             response.Token = token;
 
+            Log.Information("Response: " + JsonSerializer.Serialize(response));
+
             return response;
         }
 
         public async Task<UserDTO> Register(RegisterRequest request)
         {
+            Log.Information("Request: " + JsonSerializer.Serialize(request));
+
             var isUserExist = await _unitOfWork.UserRepository.AnyAsync(x => x.UserName == request.UserName);
             if (isUserExist)
                 throw new TransactionException("This Username Already Used!");
@@ -67,6 +82,8 @@ namespace Api.ApplicationLogic.Services
             });
 
             var response = _mapper.Map<UserDTO>(user);
+            Log.Information("Response: " + JsonSerializer.Serialize(response));
+
             return response;
         }
     }
