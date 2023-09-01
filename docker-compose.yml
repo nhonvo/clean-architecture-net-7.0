@@ -33,7 +33,7 @@ services:
     image: redis
     container_name: NhonVTT-Template-redis
     ports:
-      - 6379:6379
+      - 6378:6378
     restart: always
 
   wire_mock:

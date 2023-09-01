@@ -21,7 +21,9 @@ namespace Api.Infrastructure.Extensions
             var attributes = new List<KeyValuePair<string, object>>
             {
                 new KeyValuePair<string, object>("Error Name", name),
-                new KeyValuePair<string, object>("Error Message", message)
+                new KeyValuePair<string, object>("Error Message", message),
+                new KeyValuePair<string, object>("Type", "Schedule"),
+                new KeyValuePair<string, object>("SubType", true)
             };
             NewRelic.Api.Agent.NewRelic.RecordCustomEvent("NewRelicErrorMonitor", attributes);
         }
@@ -30,7 +32,9 @@ namespace Api.Infrastructure.Extensions
             var attributes = new List<KeyValuePair<string, object>>
             {
                 new KeyValuePair<string, object>("Error Name", name),
-                new KeyValuePair<string, object>("Error Book Message", message)
+                new KeyValuePair<string, object>("Error Book Message", message),
+                new KeyValuePair<string, object>("Type", "Not Schedule"),
+                new KeyValuePair<string, object>("SubType", false)
             };
             NewRelic.Api.Agent.NewRelic.RecordCustomEvent("NewRelicBookErrorMonitor", attributes);
         }

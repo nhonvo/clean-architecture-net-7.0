@@ -26,7 +26,6 @@ namespace Api.Infrastructure
             }
             else if (UseDocker)
             {
-                System.Console.WriteLine("here!!!+ " + DatabaseConnectionDocker);
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(DatabaseConnectionDocker));
             }
