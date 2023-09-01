@@ -18,7 +18,6 @@ namespace Api.ApplicationLogic
             
             services.AddScoped<ICacheService, CacheService>();
 
-
             return services;
         }
     }
