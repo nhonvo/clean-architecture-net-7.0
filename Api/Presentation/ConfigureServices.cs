@@ -104,7 +104,7 @@ namespace Api.Presentation
             // http client
             services.AddHttpClient("Azure_Translate", options =>
             {
-                options.BaseAddress = new Uri(configuration.AzureTranslate.Endpoint);
+                options.BaseAddress = new Uri("");
             });
             // .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(new[]{
             //     TimeSpan.FromSeconds(1),
