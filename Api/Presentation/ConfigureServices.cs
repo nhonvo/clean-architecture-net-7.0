@@ -15,10 +15,6 @@ namespace Api.Presentation
             this IServiceCollection services,
             AppConfiguration configuration)
         {
-            string audience = configuration.Jwt.Audience;
-            string issuer = configuration.Jwt.Issuer;
-            string key = configuration.Jwt.Key;
-
             services.AddControllers(options =>
            {
                options.Filters.Add<ApiExceptionFilterAttribute>();
@@ -43,7 +39,7 @@ namespace Api.Presentation
             services.AddHttpClient();
             services.AddRateLimit();
             services.AddSwaggerCustom();
-            services.AddJWTCustom(audience, issuer, key);
+            services.AddJWTCustom(configuration);
 
             return services;
         }

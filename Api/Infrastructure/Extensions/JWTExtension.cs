@@ -1,4 +1,5 @@
 using System.Text;
+using Api.Core;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -6,7 +7,7 @@ namespace Api.Infrastructure.Extensions
 {
     public static class JWTExtension
     {
-        public static IServiceCollection AddJWTCustom(this IServiceCollection services, string issuer, string audience, string key)
+        public static IServiceCollection AddJWTCustom(this IServiceCollection services, AppConfiguration configuration)
         {
             services.AddAuthentication(options =>
             {
@@ -17,9 +18,9 @@ namespace Api.Infrastructure.Extensions
             {
                 o.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidIssuer = issuer,
-                    ValidAudience = audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
+                    ValidIssuer = configuration.Jwt.Issuer,
+                    ValidAudience = configuration.Jwt.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.Jwt.Key)),
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = false,
